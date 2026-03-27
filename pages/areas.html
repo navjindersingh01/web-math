@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas - Web Math</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>Web Math</h2>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="areas.html" class="active">Areas</a></li>
+        <li><a href="patterns.html">Patterns</a></li>
+        <li><a href="series.html">Series</a></li>
+        <li><a href="author.html">Author</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE TITLE -->
+<section class="hero">
+    <h1>Areas</h1>
+    <p>Learn formulas and examples of geometric areas.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="cards">
+
+    <!-- CIRCLE -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Circle</h2>
+
+        <div class="shape circle">
+            <div class="radius-line"></div>
+            <span class="label r">r</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = πr²</p>
+
+        <!-- FIXED -->
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Enter radius" class="input-r">
+            <button onclick="calcCircle(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- RECTANGLE -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Rectangle</h2>
+
+        <div class="shape rectangle">
+            <span class="label l">l</span>
+            <span class="label b">b</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = l × b</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Length" class="input-l">
+            <input type="number" placeholder="Breadth" class="input-b">
+            <button onclick="calcRectangle(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- TRIANGLE -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Triangle</h2>
+
+        <div class="shape triangle-svg">
+            <svg width="120" height="110" viewBox="0 0 120 110">
+                <polygon points="10,90 110,90 60,10" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="60" y1="10" x2="60" y2="90" stroke="#334155" stroke-width="2"/>
+                <text x="65" y="55">h</text>
+                <text x="60" y="100" text-anchor="middle">b</text>
+            </svg>
+        </div>
+
+        <p><strong>Formula:</strong> A = ½ × b × h</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Base" class="input-b">
+            <input type="number" placeholder="Height" class="input-h">
+            <button onclick="calcTriangle(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- PARALLELOGRAM -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Parallelogram</h2>
+
+        <div class="shape parallelogram">
+            <span class="label b">b</span>
+            <span class="label h">h</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = b × h</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Base" class="input-b">
+            <input type="number" placeholder="Height" class="input-h">
+            <button onclick="calcPara(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- TRAPEZIUM -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Trapezium</h2>
+
+        <div class="shape trapezium-svg">
+            <svg width="140" height="120" viewBox="0 0 140 120">
+
+                <polygon points="30,30 110,30 130,90 10,90"
+                        fill="none" stroke="#334155" stroke-width="2"/>
+
+                <!-- height -->
+                <line x1="70" y1="30" x2="70" y2="90"
+                    stroke="#334155" stroke-width="2"/>
+
+                <!-- labels -->
+                <text x="70" y="25" text-anchor="middle">a</text>
+                <text x="70" y="105" text-anchor="middle">b</text>
+                <text x="75" y="60">h</text>
+
+            </svg>
+        </div>
+
+        <p><strong>Formula:</strong> A = ½ (a + b) × h</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="a" class="input-a">
+            <input type="number" placeholder="b" class="input-b">
+            <input type="number" placeholder="h" class="input-h">
+            <button onclick="calcTrap(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- SQUARE -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Square</h2>
+
+        <div class="shape square">
+            <span class="label a">a</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = a²</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Side" class="input-a">
+            <button onclick="calcSquare(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- ELLIPSE -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Ellipse</h2>
+
+        <div class="shape ellipse">
+            <span class="label a">a</span>
+            <span class="label b">b</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = πab</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="a" class="input-a">
+            <input type="number" placeholder="b" class="input-b">
+            <button onclick="calcEllipse(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+    <!-- SPHERE (Surface Area) -->
+    <div class="card" onclick="toggleCalc(this)">
+        <h2>Sphere</h2>
+
+        <div class="shape sphere">
+            <div class="radius-line"></div>
+            <span class="label r">r</span>
+        </div>
+
+        <p><strong>Formula:</strong> A = 4πr²</p>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Radius" class="input-r">
+            <button onclick="calcSphere(event, this)">Calculate</button>
+            <p class="result"></p>
+        </div>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Navjinder Singh</p>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

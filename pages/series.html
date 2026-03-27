@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series - Web Math</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>Web Math</h2>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="areas.html">Areas</a></li>
+        <li><a href="patterns.html">Patterns</a></li>
+        <li><a href="series.html" class="active">Series</a></li>
+        <li><a href="author.html">Author</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Series</h1>
+    <p>Learn sums of sequences with formulas and examples.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="cards">
+
+    <!-- ARITHMETIC SERIES -->
+    <div class="card" onclick="toggleSeries(this)">
+
+        <!-- ALWAYS VISIBLE -->
+        <div class="header">
+            <h2>Arithmetic Series (AP)</h2>
+            <p><strong>Formula:</strong> Sₙ = n/2 (2a + (n-1)d)</p>
+        </div>
+
+        <!-- CALCULATOR -->
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Enter first term (a)" class="input-a">
+            <input type="number" placeholder="Enter common difference (d)" class="input-d">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+
+            <button onclick="calcAP(event, this)">Calculate</button>
+
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+    <!-- GEOMETRIC SERIES -->
+    <div class="card" onclick="toggleSeries(this)">
+
+        <div class="header">
+            <h2>Geometric Series (GP)</h2>
+            <p><strong>Formula:</strong> Sₙ = a(1 - rⁿ)/(1 - r)</p>
+        </div>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Enter first term (a)" class="input-a">
+            <input type="number" placeholder="Enter common ratio (r)" class="input-r">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+
+            <button onclick="calcGP(event, this)">Calculate</button>
+
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+    <!-- INFINITE GEOMETRIC SERIES -->
+   <div class="card" onclick="toggleSeries(this)">
+
+        <div class="header">
+            <h2>Infinite Geometric Series</h2>
+            <p><strong>Formula:</strong> S = a / (1 - r)</p>
+            <p><strong>Condition:</strong> |r| &lt; 1</p>
+        </div>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Enter first term (a)" class="input-a">
+            <input type="number" placeholder="Enter ratio (r) where |r| < 1" class="input-r">
+
+            <button onclick="calcInfiniteGP(event, this)">Calculate</button>
+
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+    <!-- HARMONIC SERIES -->
+    <div class="card" onclick="toggleSeries(this)">
+
+        <div class="header">
+            <h2>Harmonic Series</h2>
+            <p><strong>Sequence:</strong> 1 + 1/2 + 1/3 + ...</p>
+            <p><strong>Property:</strong> Divergent</p>
+        </div>
+
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+
+            <button onclick="calcHarmonic(event, this)">Calculate</button>
+
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Navjinder Singh</p>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

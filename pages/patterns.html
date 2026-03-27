@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patterns - Web Math</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>Web Math</h2>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="areas.html">Areas</a></li>
+        <li><a href="patterns.html" class="active">Patterns</a></li>
+        <li><a href="series.html">Series</a></li>
+        <li><a href="author.html">Author</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Patterns</h1>
+    <p>Understand number and visual patterns with rules and examples.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="cards">
+
+<!-- ARITHMETIC -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Arithmetic Pattern</h2>
+        <p><strong>Sequence:</strong> 2, 4, 6, 8, 10</p>
+        <p><strong>Rule:</strong> Add constant difference</p>
+        <p><strong>Formula:</strong> aₙ = a + (n-1)d</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter first term (a)" class="input-a">
+            <input type="number" placeholder="Enter difference (d)" class="input-d">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genAP(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- GEOMETRIC -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Geometric Pattern</h2>
+        <p><strong>Sequence:</strong> 2, 4, 8, 16</p>
+        <p><strong>Rule:</strong> Multiply by ratio</p>
+        <p><strong>Formula:</strong> aₙ = a × rⁿ⁻¹</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter first term (a)" class="input-a">
+            <input type="number" placeholder="Enter ratio (r)" class="input-r">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genGP(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SQUARE -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Square Pattern</h2>
+        <p><strong>Sequence:</strong> 1, 4, 9, 16</p>
+        <p><strong>Rule:</strong> n²</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genSquare(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- TRIANGULAR -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Triangular Numbers</h2>
+        <p><strong>Sequence:</strong> 1, 3, 6, 10</p>
+        <p><strong>Formula:</strong> n(n+1)/2</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genTriangular(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FIBONACCI -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Fibonacci Pattern</h2>
+        <p><strong>Sequence:</strong> 0, 1, 1, 2, 3, 5</p>
+        <p><strong>Rule:</strong> Add previous two numbers</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genFibo(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- DOT -->
+<div class="card" onclick="togglePattern(this)">
+
+    <div class="header">
+        <h2>Dot Pattern</h2>
+        <p><strong>Example:</strong></p>
+        <pre>*  
+**  
+***  
+****</pre>
+        <p><strong>Rule:</strong> Increase one dot each row</p>
+    </div>
+
+    <div class="calculator hidden" onclick="event.stopPropagation()">
+
+        <div class="output"></div>
+
+        <div class="inputs">
+            <input type="number" placeholder="Enter number of rows" class="input-n">
+        </div>
+
+        <div class="btn-group">
+            <button onclick="genDots(event, this)">Generate</button>
+            <button onclick="resetCard(event, this)">Reset</button>
+            <button onclick="copyOutput(event, this)">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Navjinder Singh</p>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
