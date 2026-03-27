@@ -7,6 +7,10 @@
     --card: #ffffff;        /* white cards */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* ===== GLOBAL ===== */
 body {
     margin: 0;
@@ -45,12 +49,20 @@ h1, h2 {
 
 /* ===== NAVBAR ===== */
 .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: var(--secondary);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px 20px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 20px;
 }
 
 .navbar h2 {
@@ -80,6 +92,113 @@ h1, h2 {
     color: var(--accent);
     border-bottom: 2px solid var(--accent);
 }
+
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.nav-links a {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.menu-toggle {
+    font-size: 26px;
+    padding: 5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+body {
+    padding-top: 70px;
+}
+
+/* Default navbar */
+.navbar {
+    transition: all 0.3s ease;
+}
+
+/* Shrink state */
+.navbar.shrink {
+    padding: 8px 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Optional: smaller logo */
+.navbar.shrink .logo {
+    font-size: 18px;
+}
+
+
+/* MOBILE MENU */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        background: var(--secondary);
+        flex-direction: column;
+        width: 220px;
+        padding: 20px;
+
+        /* ANIMATION */
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+
+        pointer-events: none;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
 
 /* ===== HERO ===== */
 .hero {
@@ -524,11 +643,12 @@ button:hover {
 
 /* Image */
 .author-img {
+    display: block;
+    margin: 0 auto 15px auto;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
     border: 3px solid var(--accent);
 }
 

@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="About Navjinder Singh - BBA Business Analytics student and creator of Web Math.">
+
     <title>Author - Web Math</title>
+
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- Font Awesome Icons -->
@@ -14,8 +21,11 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <h2>Web Math</h2>
-    <ul>
+    <h2 class="logo">Web Math</h2>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="areas.html">Areas</a></li>
         <li><a href="patterns.html">Patterns</a></li>
@@ -25,11 +35,12 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<header class="hero">
     <h1>About the Author</h1>
-</section>
+</header>
 
-<!-- AUTHOR SECTION -->
+<!-- MAIN -->
+<main>
 <section class="cards">
     <div class="card author-card">
 
@@ -53,22 +64,26 @@
 
         <!-- SOCIAL LINKS -->
         <div class="social-links">
-            <a href="https://github.com/navjindersingh01" target="_blank">
+            <a href="https://github.com/navjindersingh01" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i>
             </a>
 
-            <a href="https://www.linkedin.com/in/navjindersingh/" target="_blank">
+            <a href="https://www.linkedin.com/in/navjindersingh/" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
 
     </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
     <p>© 2026 Navjinder Singh</p>
 </footer>
+
+<!-- JS -->
+<script src="../js/main.js"></script>
 
 </body>
 </html>

@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="Learn area formulas of geometric shapes with interactive calculators.">
+
     <title>Areas - Web Math</title>
+
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -11,8 +18,11 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-    <h2>Web Math</h2>
-    <ul>
+    <h2 class="logo">Web Math</h2>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="areas.html" class="active">Areas</a></li>
         <li><a href="patterns.html">Patterns</a></li>
@@ -21,13 +31,14 @@
     </ul>
 </nav>
 
-<!-- PAGE TITLE -->
-<section class="hero">
+<!-- HERO -->
+<header class="hero">
     <h1>Areas</h1>
-    <p>Learn formulas and examples of geometric areas.</p>
-</section>
+    <p>Learn formulas and calculate areas of geometric shapes interactively.</p>
+</header>
 
-<!-- CONTENT -->
+<!-- MAIN -->
+<main>
 <section class="cards">
 
     <!-- CIRCLE -->
@@ -41,9 +52,8 @@
 
         <p><strong>Formula:</strong> A = πr²</p>
 
-        <!-- FIXED -->
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter radius" class="input-r">
+            <input type="number" placeholder="Enter radius (r)" class="input-r">
             <button onclick="calcCircle(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -61,8 +71,8 @@
         <p><strong>Formula:</strong> A = l × b</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Length" class="input-l">
-            <input type="number" placeholder="Breadth" class="input-b">
+            <input type="number" placeholder="Enter length (l)" class="input-l">
+            <input type="number" placeholder="Enter breadth (b)" class="input-b">
             <button onclick="calcRectangle(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -84,8 +94,8 @@
         <p><strong>Formula:</strong> A = ½ × b × h</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Base" class="input-b">
-            <input type="number" placeholder="Height" class="input-h">
+            <input type="number" placeholder="Enter base (b)" class="input-b">
+            <input type="number" placeholder="Enter height (h)" class="input-h">
             <button onclick="calcTriangle(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -103,8 +113,8 @@
         <p><strong>Formula:</strong> A = b × h</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Base" class="input-b">
-            <input type="number" placeholder="Height" class="input-h">
+            <input type="number" placeholder="Enter base (b)" class="input-b">
+            <input type="number" placeholder="Enter height (h)" class="input-h">
             <button onclick="calcPara(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -116,28 +126,22 @@
 
         <div class="shape trapezium-svg">
             <svg width="140" height="120" viewBox="0 0 140 120">
-
                 <polygon points="30,30 110,30 130,90 10,90"
                         fill="none" stroke="#334155" stroke-width="2"/>
-
-                <!-- height -->
                 <line x1="70" y1="30" x2="70" y2="90"
-                    stroke="#334155" stroke-width="2"/>
-
-                <!-- labels -->
+                      stroke="#334155" stroke-width="2"/>
                 <text x="70" y="25" text-anchor="middle">a</text>
                 <text x="70" y="105" text-anchor="middle">b</text>
                 <text x="75" y="60">h</text>
-
             </svg>
         </div>
 
         <p><strong>Formula:</strong> A = ½ (a + b) × h</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="a" class="input-a">
-            <input type="number" placeholder="b" class="input-b">
-            <input type="number" placeholder="h" class="input-h">
+            <input type="number" placeholder="Enter side a" class="input-a">
+            <input type="number" placeholder="Enter side b" class="input-b">
+            <input type="number" placeholder="Enter height (h)" class="input-h">
             <button onclick="calcTrap(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -154,7 +158,7 @@
         <p><strong>Formula:</strong> A = a²</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Side" class="input-a">
+            <input type="number" placeholder="Enter side (a)" class="input-a">
             <button onclick="calcSquare(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
@@ -172,16 +176,16 @@
         <p><strong>Formula:</strong> A = πab</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="a" class="input-a">
-            <input type="number" placeholder="b" class="input-b">
+            <input type="number" placeholder="Enter semi-major axis (a)" class="input-a">
+            <input type="number" placeholder="Enter semi-minor axis (b)" class="input-b">
             <button onclick="calcEllipse(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
     </div>
 
-    <!-- SPHERE (Surface Area) -->
+    <!-- SPHERE -->
     <div class="card" onclick="toggleCalc(this)">
-        <h2>Sphere</h2>
+        <h2>Sphere (Surface Area)</h2>
 
         <div class="shape sphere">
             <div class="radius-line"></div>
@@ -191,18 +195,22 @@
         <p><strong>Formula:</strong> A = 4πr²</p>
 
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Radius" class="input-r">
+            <input type="number" placeholder="Enter radius (r)" class="input-r">
             <button onclick="calcSphere(event, this)">Calculate</button>
             <p class="result"></p>
         </div>
     </div>
 
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
     <p>© 2026 Navjinder Singh</p>
 </footer>
+
+<!-- JS -->
 <script src="../js/main.js"></script>
+
 </body>
 </html>
