@@ -1,216 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO -->
-    <meta name="description" content="Learn area formulas of geometric shapes with interactive calculators.">
-
-    <title>Areas - Web Math</title>
-
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn area formulas of geometric shapes with interactive calculators.">
+  <title>Areas — Web Math</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-    <h2 class="logo">Web Math</h2>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="areas.html" class="active">Areas</a></li>
-        <li><a href="patterns.html">Patterns</a></li>
-        <li><a href="series.html">Series</a></li>
-        <li><a href="author.html">Author</a></li>
-    </ul>
+<nav class="navbar" id="navbar">
+  <a class="logo" href="../index.html"><div class="logo-mark">∑</div>Web Math</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">🏠 Home</a></li>
+    <li><a href="areas.html" class="active">📐 Areas</a></li>
+    <li><a href="patterns.html">🔢 Patterns</a></li>
+    <li><a href="series.html">∑ Series</a></li>
+    <li><a href="author.html">👤 Author</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a href="../index.html"><span class="m-icon">🏠</span>Home</a>
+  <a href="areas.html" class="active"><span class="m-icon">📐</span>Areas</a>
+  <a href="patterns.html"><span class="m-icon">🔢</span>Patterns</a>
+  <a href="series.html"><span class="m-icon">∑</span>Series</a>
+  <a href="author.html"><span class="m-icon">👤</span>Author</a>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
-<!-- HERO -->
-<header class="hero">
-    <h1>Areas</h1>
-    <p>Learn formulas and calculate areas of geometric shapes interactively.</p>
+<header class="page-hero">
+  <div class="page-eyebrow">📐 Geometry</div>
+  <h1>Areas &amp; Surface Areas</h1>
+  <p>Learn to measure 2D regions and 3D surfaces through diagrams, formulas, and real-world context. Click any card to open its calculator.</p>
 </header>
 
-<!-- MAIN -->
 <main>
-<section class="cards">
-
-    <!-- CIRCLE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Circle</h2>
-
-        <div class="shape circle">
-            <div class="radius-line"></div>
-            <span class="label r">r</span>
-        </div>
-
-        <p><strong>Formula:</strong> A = πr²</p>
-
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter radius (r)" class="input-r">
-            <button onclick="calcCircle(event, this)">Calculate</button>
-            <p class="result"></p>
-        </div>
+  <div class="section-wrap">
+    <div class="theory-panel reveal">
+      <h3>What is Area?</h3>
+      <p><strong>Area</strong> measures the two-dimensional space enclosed within a boundary — expressed in square units (cm², m², km²). It answers: <em>"How much surface does this shape cover?"</em></p>
+      <p>For 3D objects we compute <strong>surface area</strong> — the total area of all outer faces. Understanding area underpins architecture, land surveying, material estimation, and computer graphics.</p>
+      <div class="formula-line"><span class="fl-label">Key unit:</span>1 m² = 10,000 cm² = 1,000,000 mm²</div>
+      <div class="key-grid">
+        <div class="key-cell"><div class="kc-label">Dimension</div><div class="kc-val">2D &amp; 3D</div></div>
+        <div class="key-cell"><div class="kc-label">SI Unit</div><div class="kc-val">m²</div></div>
+        <div class="key-cell"><div class="kc-label">Symbol</div><div class="kc-val">A</div></div>
+        <div class="key-cell"><div class="kc-label">Uses π</div><div class="kc-val">≈ 3.14159</div></div>
+      </div>
     </div>
+    <div class="section-label">Shape Calculators</div>
+    <div class="cards">
 
-    <!-- RECTANGLE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Rectangle</h2>
-
-        <div class="shape rectangle">
-            <span class="label l">l</span>
-            <span class="label b">b</span>
+      <!-- CIRCLE -->
+      <div class="card reveal" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Circle</h2>
+            <div class="card-sub">Perfectly round plane figure — every point equidistant from centre.</div>
+            <div class="card-formula">A = π r²</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = l × b</p>
-
+        <div class="shape-zone">
+          <svg width="80" height="80">
+            <circle cx="40" cy="40" r="33" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="40" y1="40" x2="68" y2="40" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <circle cx="40" cy="40" r="3" fill="#3b82f6"/>
+            <text x="51" y="36" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">r</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter length (l)" class="input-l">
-            <input type="number" placeholder="Enter breadth (b)" class="input-b">
-            <button onclick="calcRectangle(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">The circle's area grows with the <strong>square of the radius</strong>. Doubling r quadruples A. π (≈ 3.14159) is irrational — its digits never repeat and never end.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Radius (r)</label><input type="number" class="input-r" placeholder="e.g. 7" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcCircle(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- TRIANGLE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Triangle</h2>
-
-        <div class="shape triangle-svg">
-            <svg width="120" height="110" viewBox="0 0 120 110">
-                <polygon points="10,90 110,90 60,10" fill="none" stroke="#334155" stroke-width="2"/>
-                <line x1="60" y1="10" x2="60" y2="90" stroke="#334155" stroke-width="2"/>
-                <text x="65" y="55">h</text>
-                <text x="60" y="100" text-anchor="middle">b</text>
-            </svg>
+      <!-- RECTANGLE -->
+      <div class="card reveal reveal-d1" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Rectangle</h2>
+            <div class="card-sub">Quadrilateral with four right angles and opposite sides equal.</div>
+            <div class="card-formula">A = l × b</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = ½ × b × h</p>
-
+        <div class="shape-zone">
+          <svg width="120" height="70">
+            <rect x="8" y="10" width="104" height="50" fill="none" stroke="#94a3b8" stroke-width="2" rx="2"/>
+            <text x="58" y="74" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">l</text>
+            <text x="118" y="38" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">b</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter base (b)" class="input-b">
-            <input type="number" placeholder="Enter height (h)" class="input-h">
-            <button onclick="calcTriangle(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">A rectangle's area = product of its two side lengths. A <strong>square is a special rectangle</strong> (l = b), so A = l². Perimeter = 2(l + b).</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Length (l)</label><input type="number" class="input-l" placeholder="e.g. 10" min="0"></div>
+          <div class="field-group"><label class="field-label">Breadth (b)</label><input type="number" class="input-b" placeholder="e.g. 6" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcRectangle(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- PARALLELOGRAM -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Parallelogram</h2>
-
-        <div class="shape parallelogram">
-            <span class="label b">b</span>
-            <span class="label h">h</span>
+      <!-- TRIANGLE -->
+      <div class="card reveal reveal-d2" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Triangle</h2>
+            <div class="card-sub">Three-sided polygon — half the area of the parallelogram it forms.</div>
+            <div class="card-formula">A = ½ × b × h</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = b × h</p>
-
+        <div class="shape-zone">
+          <svg width="100" height="90">
+            <polygon points="50,6 92,84 8,84" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="50" y1="6" x2="50" y2="84" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="54" y="52" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">h</text>
+            <text x="47" y="98" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">b</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter base (b)" class="input-b">
-            <input type="number" placeholder="Enter height (h)" class="input-h">
-            <button onclick="calcPara(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">If only three sides are known, use <strong>Heron's formula</strong>: A = √(s(s−a)(s−b)(s−c)), where s = (a+b+c)/2. Height h must be perpendicular to the base.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Base (b)</label><input type="number" class="input-b" placeholder="e.g. 8" min="0"></div>
+          <div class="field-group"><label class="field-label">Height (h)</label><input type="number" class="input-h" placeholder="e.g. 5" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcTriangle(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- TRAPEZIUM -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Trapezium</h2>
-
-        <div class="shape trapezium-svg">
-            <svg width="140" height="120" viewBox="0 0 140 120">
-                <polygon points="30,30 110,30 130,90 10,90"
-                        fill="none" stroke="#334155" stroke-width="2"/>
-                <line x1="70" y1="30" x2="70" y2="90"
-                      stroke="#334155" stroke-width="2"/>
-                <text x="70" y="25" text-anchor="middle">a</text>
-                <text x="70" y="105" text-anchor="middle">b</text>
-                <text x="75" y="60">h</text>
-            </svg>
+      <!-- PARALLELOGRAM -->
+      <div class="card reveal" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Parallelogram</h2>
+            <div class="card-sub">Quadrilateral with both pairs of opposite sides parallel and equal.</div>
+            <div class="card-formula">A = b × h</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = ½ (a + b) × h</p>
-
+        <div class="shape-zone">
+          <svg width="120" height="72">
+            <polygon points="18,62 102,62 110,10 26,10" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="64" y1="10" x2="64" y2="62" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="60" y="77" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">b</text>
+            <text x="68" y="40" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">h</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter side a" class="input-a">
-            <input type="number" placeholder="Enter side b" class="input-b">
-            <input type="number" placeholder="Enter height (h)" class="input-h">
-            <button onclick="calcTrap(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">A parallelogram can be <strong>sheared into a rectangle</strong> with same base and height — hence same area. h is always perpendicular to the base, not the slanted side.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Base (b)</label><input type="number" class="input-b" placeholder="e.g. 10" min="0"></div>
+          <div class="field-group"><label class="field-label">Height (h)</label><input type="number" class="input-h" placeholder="e.g. 4" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcPara(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- SQUARE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Square</h2>
-
-        <div class="shape square">
-            <span class="label a">a</span>
+      <!-- TRAPEZIUM -->
+      <div class="card reveal reveal-d1" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Trapezium</h2>
+            <div class="card-sub">Quadrilateral with exactly one pair of parallel sides (a and b).</div>
+            <div class="card-formula">A = ½(a + b) × h</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = a²</p>
-
+        <div class="shape-zone">
+          <svg width="130" height="80">
+            <polygon points="26,14 104,14 122,66 8,66" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="65" y1="14" x2="65" y2="66" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="65" y="10" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">a</text>
+            <text x="65" y="79" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">b</text>
+            <text x="69" y="44" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">h</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter side (a)" class="input-a">
-            <button onclick="calcSquare(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">Think of a trapezium as the <strong>average of two rectangles</strong> — one with base a and one with base b — giving (a+b)/2 × h. Common in architecture and cross-section calculations.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Parallel side a (top)</label><input type="number" class="input-a" placeholder="e.g. 6" min="0"></div>
+          <div class="field-group"><label class="field-label">Parallel side b (bottom)</label><input type="number" class="input-b" placeholder="e.g. 10" min="0"></div>
+          <div class="field-group"><label class="field-label">Height (h)</label><input type="number" class="input-h" placeholder="e.g. 4" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcTrap(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- ELLIPSE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Ellipse</h2>
-
-        <div class="shape ellipse">
-            <span class="label a">a</span>
-            <span class="label b">b</span>
+      <!-- SQUARE -->
+      <div class="card reveal reveal-d2" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Square</h2>
+            <div class="card-sub">Regular quadrilateral — all four sides equal and all angles 90°.</div>
+            <div class="card-formula">A = a²</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = πab</p>
-
+        <div class="shape-zone">
+          <svg width="80" height="80">
+            <rect x="10" y="10" width="60" height="60" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <text x="38" y="78" text-anchor="middle" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">a</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter semi-major axis (a)" class="input-a">
-            <input type="number" placeholder="Enter semi-minor axis (b)" class="input-b">
-            <button onclick="calcEllipse(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">The word <em>"square"</em> in algebra (x²) comes from this shape. Multiplying a number by itself gives the area of a square with that side. Its diagonal = a√2.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Side (a)</label><input type="number" class="input-a" placeholder="e.g. 5" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcSquare(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- SPHERE -->
-    <div class="card" onclick="toggleCalc(this)">
-        <h2>Sphere (Surface Area)</h2>
-
-        <div class="shape sphere">
-            <div class="radius-line"></div>
-            <span class="label r">r</span>
+      <!-- ELLIPSE -->
+      <div class="card reveal" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Ellipse</h2>
+            <div class="card-sub">Oval curve with two focal points. A circle is a special ellipse (a = b).</div>
+            <div class="card-formula">A = π × a × b</div>
+          </div>
+          <div class="card-toggle">+</div>
         </div>
-
-        <p><strong>Formula:</strong> A = 4πr²</p>
-
+        <div class="shape-zone">
+          <svg width="120" height="80">
+            <ellipse cx="60" cy="40" rx="52" ry="28" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="60" y1="40" x2="112" y2="40" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <line x1="60" y1="40" x2="60" y2="12" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <circle cx="60" cy="40" r="3" fill="#3b82f6"/>
+            <text x="83" y="36" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">a</text>
+            <text x="63" y="30" fill="#0891b2" font-size="11" font-family="Fira Code,monospace">b</text>
+          </svg>
+        </div>
         <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter radius (r)" class="input-r">
-            <button onclick="calcSphere(event, this)">Calculate</button>
-            <p class="result"></p>
+          <div class="card-theory">Planets orbit the Sun in <strong>ellipses</strong> (Kepler's First Law). The formula πab generalises πr² — replace r² with a×b. The perimeter of an ellipse has no simple exact formula.</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Semi-major axis (a)</label><input type="number" class="input-a" placeholder="e.g. 8" min="0"></div>
+          <div class="field-group"><label class="field-label">Semi-minor axis (b)</label><input type="number" class="input-b" placeholder="e.g. 5" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcEllipse(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
         </div>
-    </div>
+      </div>
 
-</section>
+      <!-- SPHERE -->
+      <div class="card reveal reveal-d1" onclick="toggleCalc(this)">
+        <div class="card-header">
+          <div class="card-header-body">
+            <h2>Sphere (Surface Area)</h2>
+            <div class="card-sub">Perfectly round 3D solid — every surface point equidistant from centre.</div>
+            <div class="card-formula">SA = 4π r²</div>
+          </div>
+          <div class="card-toggle">+</div>
+        </div>
+        <div class="shape-zone">
+          <svg width="80" height="80">
+            <circle cx="40" cy="40" r="33" fill="none" stroke="#94a3b8" stroke-width="2"/>
+            <ellipse cx="40" cy="40" rx="33" ry="12" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" opacity=".6"/>
+            <line x1="40" y1="40" x2="68" y2="40" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <circle cx="40" cy="40" r="3" fill="#3b82f6"/>
+            <text x="51" y="36" fill="#3b82f6" font-size="11" font-family="Fira Code,monospace">r</text>
+          </svg>
+        </div>
+        <div class="calculator hidden" onclick="event.stopPropagation()">
+          <div class="card-theory">The surface area of a sphere equals <strong>exactly 4 circles of radius r</strong> — a beautiful result proved by Archimedes. Surface-area-to-volume ratio = 3/r, key in biology (cell size limits).</div>
+          <p class="result"></p>
+          <div class="field-group"><label class="field-label">Radius (r)</label><input type="number" class="input-r" placeholder="e.g. 6" min="0"></div>
+          <div class="btn-group">
+            <button class="btn-primary" onclick="calcSphere(event,this)">Calculate</button>
+            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
+            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </main>
 
-<!-- FOOTER -->
 <footer>
-    <p>© 2026 Navjinder Singh</p>
+  <p>© 2026 Navjinder Singh</p>
+  <div class="footer-brand"><div class="footer-mark">∑</div>Web Math</div>
 </footer>
-
-<!-- JS -->
+<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toastMsg">Done!</span></div>
+<button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">↑</button>
 <script src="../js/main.js"></script>
-
 </body>
 </html>

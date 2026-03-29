@@ -2,126 +2,203 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO -->
     <meta name="description" content="Learn and calculate arithmetic, geometric, and harmonic series interactively.">
-
-    <title>Series - Web Math</title>
-
+    <title>Series — Web Math</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-    <h2 class="logo">Web Math</h2>
-
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
+<nav class="navbar" id="navbar">
+    <a class="logo" href="../index.html">
+        <div class="logo-mark">∑</div>
+        Web Math
+    </a>
     <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="areas.html">Areas</a></li>
-        <li><a href="patterns.html">Patterns</a></li>
-        <li><a href="series.html" class="active">Series</a></li>
-        <li><a href="author.html">Author</a></li>
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="areas.html">📐 Areas</a></li>
+        <li><a href="patterns.html">🔢 Patterns</a></li>
+        <li><a href="series.html" class="active">∑ Series</a></li>
+        <li><a href="author.html">👤 Author</a></li>
     </ul>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-    <h1>Series</h1>
-    <p>Learn and calculate sums of sequences using formulas and interactive tools.</p>
+<!-- MOBILE DRAWER -->
+<nav class="mobile-drawer" id="drawer">
+    <a href="../index.html"><span class="m-icon">🏠</span>Home</a>
+    <a href="areas.html"><span class="m-icon">📐</span>Areas</a>
+    <a href="patterns.html"><span class="m-icon">🔢</span>Patterns</a>
+    <a href="series.html" class="active"><span class="m-icon">∑</span>Series</a>
+    <a href="author.html"><span class="m-icon">👤</span>Author</a>
+</nav>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+    <div class="page-hero-inner">
+        <div class="page-eyebrow">∑ Summation</div>
+        <h1>Mathematical Series</h1>
+        <p>A series is the sum of the terms of a sequence. Understand finite sums, convergence, and divergence through guided calculators with full step-by-step working.</p>
+    </div>
 </header>
 
 <!-- MAIN -->
 <main>
-<section class="cards">
+<div class="section-wrap">
 
-    <!-- ARITHMETIC SERIES -->
-    <div class="card" onclick="toggleSeries(this)">
-        <div class="header">
-            <h2>Arithmetic Series (AP)</h2>
-            <p><strong>Formula:</strong> Sₙ = n/2 (2a + (n-1)d)</p>
-        </div>
-
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter first term (a)" class="input-a">
-            <input type="number" placeholder="Enter common difference (d)" class="input-d">
-            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
-
-            <button onclick="calcAP(event, this)">Calculate</button>
-
-            <p class="result"></p>
+    <div class="theory-panel reveal">
+        <h3>Series vs. Sequence</h3>
+        <p>A <strong>sequence</strong> lists numbers in order: 1, 2, 3, 4… A <strong>series</strong> adds them: 1+2+3+4+… = Sₙ. Series can be <strong>finite</strong> (fixed upper bound) or <strong>infinite</strong>. An infinite series either <em>converges</em> to a finite limit or <em>diverges</em> to ±∞.</p>
+        <p>Determining convergence is one of the central questions of calculus and real analysis — with profound implications in physics, engineering, and computer science.</p>
+        <div class="formula-line"><span class="fl-label">General sum:</span> Sₙ = a₁ + a₂ + … + aₙ = Σᵢ₌₁ⁿ aᵢ</div>
+        <div class="key-grid">
+            <div class="key-cell"><div class="kc-label">Finite sum</div><div class="kc-val">Fixed n</div></div>
+            <div class="key-cell"><div class="kc-label">Convergent</div><div class="kc-val">S → finite value</div></div>
+            <div class="key-cell"><div class="kc-label">Divergent</div><div class="kc-val">S → ±∞</div></div>
+            <div class="key-cell"><div class="kc-label">Symbol</div><div class="kc-val">Σ (sigma)</div></div>
         </div>
     </div>
 
-    <!-- GEOMETRIC SERIES -->
-    <div class="card" onclick="toggleSeries(this)">
-        <div class="header">
-            <h2>Geometric Series (GP)</h2>
-            <p><strong>Formula:</strong> Sₙ = a(1 - rⁿ)/(1 - r)</p>
+    <div class="section-label">Series Calculators</div>
+
+    <div class="cards-grid">
+
+        <!-- AP SERIES -->
+        <div class="calc-card reveal" onclick="toggleSeries(this)">
+            <div class="cc-header">
+                <div class="cc-header-body">
+                    <h3>Arithmetic Series (AP)</h3>
+                    <div class="cc-sub">Sum of n terms with first term a and common difference d.</div>
+                    <div class="cc-formula">Sₙ = n/2 · (2a + (n−1)d)</div>
+                </div>
+                <div class="cc-toggle">+</div>
+            </div>
+            <div class="cc-body" onclick="event.stopPropagation()">
+                <div class="cc-theory">Young <strong>Gauss</strong> summed 1 to 100 = 5050 in seconds by pairing: (1+100)+(2+99)+… = 50 pairs of 101. The formula encodes this: Sₙ = n × (average of first and last term).</div>
+                <div class="result-box" id="ro-aps" data-ph="Sum appears here…"></div>
+                <div class="input-group">
+                    <label class="field-label">First term (a)</label>
+                    <input type="number" class="field input-a" placeholder="e.g. 1">
+                </div>
+                <div class="input-group">
+                    <label class="field-label">Common difference (d)</label>
+                    <input type="number" class="field input-d" placeholder="e.g. 2">
+                </div>
+                <div class="input-group">
+                    <label class="field-label">Number of terms (n)</label>
+                    <input type="number" class="field input-n" placeholder="e.g. 10" min="1">
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="calcAP(event, this)">Calculate</button>
+                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
+                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
+                </div>
+            </div>
         </div>
 
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter first term (a)" class="input-a">
-            <input type="number" placeholder="Enter common ratio (r)" class="input-r">
-            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
-
-            <button onclick="calcGP(event, this)">Calculate</button>
-
-            <p class="result"></p>
+        <!-- GP SERIES -->
+        <div class="calc-card reveal reveal-delay-1" onclick="toggleSeries(this)">
+            <div class="cc-header">
+                <div class="cc-header-body">
+                    <h3>Geometric Series (GP)</h3>
+                    <div class="cc-sub">Sum of n terms of a geometric sequence (r ≠ 1).</div>
+                    <div class="cc-formula">Sₙ = a(1 − rⁿ) / (1 − r)</div>
+                </div>
+                <div class="cc-toggle">+</div>
+            </div>
+            <div class="cc-body" onclick="event.stopPropagation()">
+                <div class="cc-theory">Compound interest over n periods is a GP series. Also models <strong>binary storage</strong>: 1, 2, 4, 8… bytes (a=1, r=2). When r = 1, use Sₙ = n × a.</div>
+                <div class="result-box" id="ro-gps" data-ph="Sum appears here…"></div>
+                <div class="input-group">
+                    <label class="field-label">First term (a)</label>
+                    <input type="number" class="field input-a" placeholder="e.g. 2">
+                </div>
+                <div class="input-group">
+                    <label class="field-label">Common ratio (r)</label>
+                    <input type="number" class="field input-r" placeholder="e.g. 3">
+                </div>
+                <div class="input-group">
+                    <label class="field-label">Number of terms (n)</label>
+                    <input type="number" class="field input-n" placeholder="e.g. 6" min="1">
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="calcGP(event, this)">Calculate</button>
+                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
+                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
+                </div>
+            </div>
         </div>
+
+        <!-- INFINITE GP -->
+        <div class="calc-card reveal reveal-delay-2" onclick="toggleSeries(this)">
+            <div class="cc-header">
+                <div class="cc-header-body">
+                    <h3>Infinite Geometric Series</h3>
+                    <div class="cc-sub">Converges only when |r| &lt; 1.</div>
+                    <div class="cc-formula">S∞ = a / (1 − r)</div>
+                </div>
+                <div class="cc-toggle">+</div>
+            </div>
+            <div class="cc-body" onclick="event.stopPropagation()">
+                <div class="cc-theory"><strong>Zeno's Paradox</strong>: to cross a room you must first cross half, then half of the rest… infinitely. Yet you arrive — because ½+¼+⅛+… = 1. This converges to a/(1−r) only when |r| &lt; 1.</div>
+                <div class="result-box" id="ro-igp" data-ph="Sum appears here…"></div>
+                <div class="input-group">
+                    <label class="field-label">First term (a)</label>
+                    <input type="number" class="field input-a" placeholder="e.g. 1">
+                </div>
+                <div class="input-group">
+                    <label class="field-label">Ratio r (must satisfy |r| &lt; 1)</label>
+                    <input type="number" class="field input-r" placeholder="e.g. 0.5" step="0.01">
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="calcInfiniteGP(event, this)">Calculate</button>
+                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
+                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HARMONIC -->
+        <div class="calc-card reveal" onclick="toggleSeries(this)">
+            <div class="cc-header">
+                <div class="cc-header-body">
+                    <h3>Harmonic Series</h3>
+                    <div class="cc-sub">1 + ½ + ⅓ + ¼ + … — grows without bound despite shrinking terms.</div>
+                    <div class="cc-formula">Hₙ = Σ 1/k, k = 1 to n</div>
+                </div>
+                <div class="cc-toggle">+</div>
+            </div>
+            <div class="cc-body" onclick="event.stopPropagation()">
+                <div class="cc-theory">Proved divergent by <strong>Nicole Oresme</strong> in the 14th century. The partial sum Hₙ ≈ ln(n) + γ, where γ ≈ 0.5772 is the Euler–Mascheroni constant. A counterintuitive and beautiful result of analysis.</div>
+                <div class="result-box" id="ro-harm" data-ph="Sum appears here…"></div>
+                <div class="input-group">
+                    <label class="field-label">Number of terms (n)</label>
+                    <input type="number" class="field input-n" placeholder="e.g. 20" min="1" max="100000">
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="calcHarmonic(event, this)">Calculate</button>
+                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
+                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-    <!-- INFINITE GP -->
-    <div class="card" onclick="toggleSeries(this)">
-        <div class="header">
-            <h2>Infinite Geometric Series</h2>
-            <p><strong>Formula:</strong> S = a / (1 - r)</p>
-            <p><strong>Condition:</strong> |r| &lt; 1</p>
-        </div>
-
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter first term (a)" class="input-a">
-            <input type="number" placeholder="Enter ratio (r) where |r| < 1" class="input-r">
-
-            <button onclick="calcInfiniteGP(event, this)">Calculate</button>
-
-            <p class="result"></p>
-        </div>
-    </div>
-
-    <!-- HARMONIC SERIES -->
-    <div class="card" onclick="toggleSeries(this)">
-        <div class="header">
-            <h2>Harmonic Series</h2>
-            <p><strong>Sequence:</strong> 1 + 1/2 + 1/3 + ...</p>
-            <p><strong>Property:</strong> Divergent</p>
-        </div>
-
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-            <input type="number" placeholder="Enter number of terms (n)" class="input-n">
-
-            <button onclick="calcHarmonic(event, this)">Calculate</button>
-
-            <p class="result"></p>
-        </div>
-    </div>
-
-</section>
+</div>
 </main>
 
-<!-- FOOTER -->
 <footer>
     <p>© 2026 Navjinder Singh</p>
+    <div class="footer-logo"><div class="lm">∑</div>Web Math</div>
 </footer>
 
-<!-- JS -->
-<script src="../js/main.js"></script>
+<div class="toast" id="toast"><span class="ti">✓</span><span id="toast-msg">Copied!</span></div>
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<script src="../js/main.js"></script>
 </body>
 </html>
