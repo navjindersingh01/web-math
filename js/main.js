@@ -1,320 +1,286 @@
-/* ══════════════════════════════════════
-   WEB MATH — main.js
-   Navbar · Mobile drawer · Scroll reveal
-   Toggle · Areas · Patterns · Series
-   Toast · Copy · Scroll-to-top
-══════════════════════════════════════ */
+/* ============================================
+   WEB MATH  |  main.js
+   All interactivity — no dependencies
+   ============================================ */
 
-/* ══════════════════════════════════════
-   NAVBAR SCROLL SHRINK
-══════════════════════════════════════ */
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.navbar');
-  if (nav) nav.classList.toggle('shrink', window.scrollY > 30);
-
-  const btn = document.getElementById('scrollTopBtn');
-  if (btn) btn.classList.toggle('show', window.scrollY > 320);
+/* ---- Navbar shrink on scroll ---- */
+window.addEventListener('scroll', function () {
+  var nb  = document.querySelector('.navbar');
+  var s2t = document.getElementById('s2t');
+  if (nb)  nb.classList.toggle('scrolled', window.scrollY > 28);
+  if (s2t) s2t.classList.toggle('show', window.scrollY > 300);
 }, { passive: true });
 
-/* ══════════════════════════════════════
-   MOBILE MENU
-══════════════════════════════════════ */
+/* ---- Mobile hamburger ---- */
 function toggleMenu() {
-  const toggle  = document.getElementById('menuToggle');
-  const drawer  = document.getElementById('mobileDrawer');
-  const overlay = document.getElementById('navOverlay');
-  if (!drawer) return;
-  const open = drawer.classList.contains('active');
-  drawer.classList.toggle('active', !open);
-  overlay.classList.toggle('active', !open);
-  toggle.classList.toggle('open', !open);
+  var ham = document.getElementById('ham');
+  var drw = document.getElementById('drawer');
+  var ovl = document.getElementById('overlay');
+  if (!ham || !drw) return;
+  var open = drw.classList.contains('open');
+  drw.classList.toggle('open', !open);
+  ovl.classList.toggle('show', !open);
+  ham.classList.toggle('open', !open);
 }
-
 function closeMenu() {
-  const toggle  = document.getElementById('menuToggle');
-  const drawer  = document.getElementById('mobileDrawer');
-  const overlay = document.getElementById('navOverlay');
-  if (!drawer) return;
-  drawer.classList.remove('active');
-  overlay.classList.remove('active');
-  toggle.classList.remove('open');
+  var ham = document.getElementById('ham');
+  var drw = document.getElementById('drawer');
+  var ovl = document.getElementById('overlay');
+  if (drw) drw.classList.remove('open');
+  if (ovl) ovl.classList.remove('show');
+  if (ham) ham.classList.remove('open');
 }
 
-/* ══════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════ */
+/* ---- Scroll reveal ---- */
 function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
-  els.forEach(el => obs.observe(el));
-}
-
-/* ══════════════════════════════════════
-   CARD TOGGLES
-══════════════════════════════════════ */
-
-/* Areas / Series — independent open/close */
-function toggleCalc(card) {
-  const header = card.querySelector('.card-header');
-  const calc   = card.querySelector('.calculator');
-  if (!calc) return;
-  const isOpen = !calc.classList.contains('hidden');
-  calc.classList.toggle('hidden', isOpen);
-  if (header) header.classList.toggle('open', !isOpen);
-}
-
-/* Series alias */
-function toggleSeries(card) { toggleCalc(card); }
-
-/* Patterns — accordion: one open at a time */
-function togglePattern(card) {
-  document.querySelectorAll('.card').forEach(c => {
-    if (c !== card) {
-      const calc   = c.querySelector('.calculator');
-      const header = c.querySelector('.card-header');
-      if (calc)   calc.classList.add('hidden');
-      if (header) header.classList.remove('open');
-    }
-  });
-  const calc   = card.querySelector('.calculator');
-  const header = card.querySelector('.card-header');
-  if (!calc) return;
-  const isOpen = !calc.classList.contains('hidden');
-  calc.classList.toggle('hidden', isOpen);
-  if (header) header.classList.toggle('open', !isOpen);
-}
-
-/* ══════════════════════════════════════
-   TOAST
-══════════════════════════════════════ */
-let _tt;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  const m = document.getElementById('toastMsg');
-  if (!t || !m) return;
-  m.textContent = msg || 'Done!';
-  t.classList.add('show');
-  clearTimeout(_tt);
-  _tt = setTimeout(() => t.classList.remove('show'), 2000);
-}
-
-/* ══════════════════════════════════════
-   COPY OUTPUT
-══════════════════════════════════════ */
-function copyOutput(e, btn) {
-  if (e) e.stopPropagation();
-  const card = btn.closest('.card');
-  const out  = card.querySelector('.output') || card.querySelector('.result');
-  const txt  = out ? out.textContent.trim() : '';
-  if (!txt) { showToast('Nothing to copy'); return; }
-  navigator.clipboard.writeText(txt).then(() => showToast('Copied to clipboard ✓'));
-}
-
-/* ══════════════════════════════════════
-   RESET CARD
-══════════════════════════════════════ */
-function resetCard(e, btn) {
-  if (e) e.stopPropagation();
-  const card = btn.closest('.card');
-  card.querySelectorAll('input[type="number"]').forEach(i => { i.value = ''; });
-  const out = card.querySelector('.output') || card.querySelector('.result');
-  if (out) out.textContent = '';
-}
-
-/* ══════════════════════════════════════
-   HELPERS
-══════════════════════════════════════ */
-function getCard(btn) { return btn.closest('.card'); }
-function setResult(card, t) { const e = card.querySelector('.result'); if (e) e.textContent = t; }
-function setOutput(card, t) { const e = card.querySelector('.output'); if (e) e.textContent = t; }
-function gv(card, cls) { const e = card.querySelector(cls); return e ? parseFloat(e.value) : NaN; }
-function ok(v) { return !isNaN(v) && isFinite(v); }
-
-/* ══════════════════════════════════════
-   AREA CALCULATORS
-══════════════════════════════════════ */
-function calcCircle(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), r = gv(card, '.input-r');
-  if (!ok(r) || r < 0) { setResult(card, '⚠ Enter a valid radius (≥ 0)'); return; }
-  setResult(card, `Area = ${(Math.PI*r*r).toFixed(4)} sq units\n\nA = π × r²\n  = π × ${r}²\n  = ${Math.PI.toFixed(6)} × ${(r*r).toFixed(4)}`);
-}
-
-function calcRectangle(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), l = gv(card,'.input-l'), b = gv(card,'.input-b');
-  if (!ok(l)||!ok(b)||l<0||b<0) { setResult(card,'⚠ Enter valid length and breadth'); return; }
-  setResult(card, `Area = ${(l*b).toFixed(4)} sq units\n\nA = l × b = ${l} × ${b}`);
-}
-
-function calcTriangle(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), b = gv(card,'.input-b'), h = gv(card,'.input-h');
-  if (!ok(b)||!ok(h)||b<0||h<0) { setResult(card,'⚠ Enter valid base and height'); return; }
-  setResult(card, `Area = ${(0.5*b*h).toFixed(4)} sq units\n\nA = ½ × b × h = ½ × ${b} × ${h}`);
-}
-
-function calcPara(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), b = gv(card,'.input-b'), h = gv(card,'.input-h');
-  if (!ok(b)||!ok(h)||b<0||h<0) { setResult(card,'⚠ Enter valid base and height'); return; }
-  setResult(card, `Area = ${(b*h).toFixed(4)} sq units\n\nA = b × h = ${b} × ${h}`);
-}
-
-function calcTrap(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), b = gv(card,'.input-b'), h = gv(card,'.input-h');
-  if (!ok(a)||!ok(b)||!ok(h)||a<0||b<0||h<0) { setResult(card,'⚠ Enter valid a, b and height'); return; }
-  setResult(card, `Area = ${(0.5*(a+b)*h).toFixed(4)} sq units\n\nA = ½(a + b) × h\n  = ½(${a} + ${b}) × ${h}\n  = ½ × ${a+b} × ${h}`);
-}
-
-function calcSquare(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a');
-  if (!ok(a)||a<0) { setResult(card,'⚠ Enter a valid side length'); return; }
-  setResult(card, `Area = ${(a*a).toFixed(4)} sq units\n\nA = a² = ${a}² = ${a*a}`);
-}
-
-function calcEllipse(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), b = gv(card,'.input-b');
-  if (!ok(a)||!ok(b)||a<0||b<0) { setResult(card,'⚠ Enter valid semi-axes'); return; }
-  setResult(card, `Area = ${(Math.PI*a*b).toFixed(4)} sq units\n\nA = π × a × b = π × ${a} × ${b}`);
-}
-
-function calcSphere(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), r = gv(card,'.input-r');
-  if (!ok(r)||r<0) { setResult(card,'⚠ Enter a valid radius'); return; }
-  setResult(card, `Surface Area = ${(4*Math.PI*r*r).toFixed(4)} sq units\n\nSA = 4 × π × r²\n   = 4 × π × ${r}²`);
-}
-
-/* ══════════════════════════════════════
-   SERIES CALCULATORS
-══════════════════════════════════════ */
-function calcAP(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), d = gv(card,'.input-d'), n = gv(card,'.input-n');
-  if (!ok(a)||!ok(d)||!ok(n)||n<1) { setResult(card,'⚠ Enter valid a, d and n ≥ 1'); return; }
-  const S = (n/2)*(2*a+(n-1)*d), last = a+(n-1)*d;
-  setResult(card, `Sum Sₙ = ${S}\n\nSₙ = n/2 · (2a + (n−1)d)\n   = ${n}/2 · (2×${a} + ${n-1}×${d})\n\nFirst: ${a}   Last: ${last}   Terms: ${n}`);
-}
-
-function calcGP(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), r = gv(card,'.input-r'), n = gv(card,'.input-n');
-  if (!ok(a)||!ok(r)||!ok(n)||n<1) { setResult(card,'⚠ Enter valid a, r and n ≥ 1'); return; }
-  const S = r===1 ? a*n : a*(1-Math.pow(r,n))/(1-r);
-  setResult(card, `Sum Sₙ = ${S.toFixed(6)}\n\nSₙ = a(1 − rⁿ) / (1 − r)\n   = ${a}(1 − ${r}^${n}) / (1 − ${r})\n\nTerms: ${n}   Ratio: ${r}`);
-}
-
-function calcInfiniteGP(e, btn) {
-  e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), r = gv(card,'.input-r');
-  if (!ok(a)||!ok(r)) { setResult(card,'⚠ Enter valid a and r'); return; }
-  if (Math.abs(r) >= 1) {
-    setResult(card, `⚠ |r| must be less than 1 for convergence.\n|r| = ${Math.abs(r).toFixed(4)} ≥ 1 — series diverges.`);
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length || typeof IntersectionObserver === 'undefined') {
+    els.forEach(function(el) { el.classList.add('in'); });
     return;
   }
-  setResult(card, `Sum S∞ = ${(a/(1-r)).toFixed(6)}\n\nS∞ = a / (1 − r)\n   = ${a} / (1 − ${r})\n\n✓ Converges because |${r}| < 1`);
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
 }
 
-function calcHarmonic(e, btn) {
+/* ---- Card toggle — Areas (independent) ---- */
+function toggleCalc(card) {
+  var hdr  = card.querySelector('.cheader');
+  var body = card.querySelector('.cbody');
+  if (!body) return;
+  var open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  if (hdr) hdr.classList.toggle('open', !open);
+}
+
+/* ---- Card toggle — Patterns (accordion) ---- */
+function togglePattern(card) {
+  document.querySelectorAll('.ccard').forEach(function(c) {
+    if (c === card) return;
+    var b = c.querySelector('.cbody'), h = c.querySelector('.cheader');
+    if (b) b.classList.remove('open');
+    if (h) h.classList.remove('open');
+  });
+  toggleCalc(card);
+}
+
+/* ---- Card toggle — Series (independent) ---- */
+function toggleSeries(card) { toggleCalc(card); }
+
+/* ---- Toast ---- */
+var _tt;
+function toast(msg) {
+  var t = document.getElementById('toast');
+  var m = document.getElementById('tmsg');
+  if (!t || !m) return;
+  m.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+/* ---- Copy output ---- */
+function copyOut(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), n = gv(card,'.input-n');
-  if (!ok(n)||n<1) { setResult(card,'⚠ Enter n ≥ 1'); return; }
-  let S = 0;
-  for (let i = 1; i <= n; i++) S += 1/i;
-  setResult(card, `Partial Sum Hₙ = ${S.toFixed(8)}\n\nHₙ = 1 + 1/2 + 1/3 + … + 1/${n}\n\nApprox: ln(${n}) + γ ≈ ${(Math.log(n)+0.5772156649).toFixed(6)}\n\n⚠ Full harmonic series diverges to ∞`);
+  var card = btn.closest('.ccard');
+  var el   = card.querySelector('.output') || card.querySelector('.result');
+  var txt  = el ? el.textContent.trim() : '';
+  if (!txt) { toast('Nothing to copy'); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(function() { toast('Copied to clipboard ✓'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); toast('Copied ✓');
+  }
 }
 
-/* ══════════════════════════════════════
+/* ---- Reset card ---- */
+function resetCard(e, btn) {
+  e.stopPropagation();
+  var card = btn.closest('.ccard');
+  card.querySelectorAll('input[type="number"]').forEach(function(i) { i.value = ''; });
+  var el = card.querySelector('.output') || card.querySelector('.result');
+  if (el) el.textContent = '';
+}
+
+/* ---- Helpers ---- */
+function gc(btn)    { return btn.closest('.ccard'); }
+function gv(c, sel) { var el = c.querySelector(sel); return el ? parseFloat(el.value) : NaN; }
+function ok(v)      { return typeof v === 'number' && isFinite(v) && !isNaN(v); }
+function sr(c, t)   { var el = c.querySelector('.result'); if (el) el.textContent = t; }
+function so(c, t)   { var el = c.querySelector('.output'); if (el) el.textContent = t; }
+
+/* ============================================
+   AREA CALCULATORS
+   ============================================ */
+function calcCircle(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), r = gv(c, '.ir');
+  if (!ok(r) || r < 0) { sr(c, '⚠  Enter a valid radius (≥ 0)'); return; }
+  var A = Math.PI * r * r;
+  sr(c, 'Area = ' + A.toFixed(4) + ' sq units\n\nA = π × r²\n  = π × ' + r + '²\n  = ' + A.toFixed(6));
+}
+function calcRect(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), l = gv(c, '.il'), b = gv(c, '.ib');
+  if (!ok(l)||!ok(b)||l<0||b<0) { sr(c,'⚠  Enter valid length and breadth'); return; }
+  sr(c, 'Area = ' + (l*b).toFixed(4) + ' sq units\n\nA = l × b = ' + l + ' × ' + b);
+}
+function calcTri(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), b = gv(c, '.ib'), h = gv(c, '.ih');
+  if (!ok(b)||!ok(h)||b<0||h<0) { sr(c,'⚠  Enter valid base and height'); return; }
+  sr(c, 'Area = ' + (0.5*b*h).toFixed(4) + ' sq units\n\nA = ½ × b × h\n  = ½ × ' + b + ' × ' + h);
+}
+function calcPara(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), b = gv(c, '.ib'), h = gv(c, '.ih');
+  if (!ok(b)||!ok(h)||b<0||h<0) { sr(c,'⚠  Enter valid base and height'); return; }
+  sr(c, 'Area = ' + (b*h).toFixed(4) + ' sq units\n\nA = b × h = ' + b + ' × ' + h);
+}
+function calcTrap(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c,'.ia'), b = gv(c,'.ib'), h = gv(c,'.ih');
+  if (!ok(a)||!ok(b)||!ok(h)||a<0||b<0||h<0) { sr(c,'⚠  Enter valid a, b and height'); return; }
+  var A = 0.5*(a+b)*h;
+  sr(c,'Area = '+A.toFixed(4)+' sq units\n\nA = ½(a+b) × h\n  = ½('+a+'+'+b+') × '+h+'\n  = ½ × '+(a+b)+' × '+h);
+}
+function calcSq(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c, '.ia');
+  if (!ok(a)||a<0) { sr(c,'⚠  Enter a valid side length'); return; }
+  sr(c,'Area = '+(a*a).toFixed(4)+' sq units\n\nA = a² = '+a+'² = '+(a*a).toFixed(4));
+}
+function calcEllipse(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c,'.ia'), b = gv(c,'.ib');
+  if (!ok(a)||!ok(b)||a<0||b<0) { sr(c,'⚠  Enter valid semi-axes'); return; }
+  var A = Math.PI*a*b;
+  sr(c,'Area = '+A.toFixed(4)+' sq units\n\nA = π × a × b = π × '+a+' × '+b);
+}
+function calcSphere(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), r = gv(c,'.ir');
+  if (!ok(r)||r<0) { sr(c,'⚠  Enter a valid radius'); return; }
+  var A = 4*Math.PI*r*r;
+  sr(c,'Surface Area = '+A.toFixed(4)+' sq units\n\nSA = 4πr²\n   = 4 × π × '+r+'²\n   = '+A.toFixed(6));
+}
+
+/* ============================================
+   SERIES CALCULATORS
+   ============================================ */
+function calcAP(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c,'.ia'), d = gv(c,'.id'), n = gv(c,'.in');
+  if (!ok(a)||!ok(d)||!ok(n)||n<1) { sr(c,'⚠  Enter valid a, d and n ≥ 1'); return; }
+  var S = (n/2)*(2*a+(n-1)*d), last = a+(n-1)*d;
+  sr(c,'Sₙ = '+S+'\n\nSₙ = n/2 · (2a + (n−1)d)\n   = '+n+'/2 · (2×'+a+' + '+(n-1)+'×'+d+')\n\nFirst: '+a+'   Last: '+last+'   Terms: '+n);
+}
+function calcGP(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c,'.ia'), r = gv(c,'.ir'), n = gv(c,'.in');
+  if (!ok(a)||!ok(r)||!ok(n)||n<1) { sr(c,'⚠  Enter valid a, r and n ≥ 1'); return; }
+  var S = (r===1) ? a*n : a*(1-Math.pow(r,n))/(1-r);
+  sr(c,'Sₙ = '+S.toFixed(6)+'\n\nSₙ = a(1−rⁿ)/(1−r)\n   = '+a+'(1−'+r+'^'+n+')/(1−'+r+')\n\nTerms: '+n+'   Ratio: '+r);
+}
+function calcInfGP(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), a = gv(c,'.ia'), r = gv(c,'.ir');
+  if (!ok(a)||!ok(r)) { sr(c,'⚠  Enter valid a and r'); return; }
+  if (Math.abs(r)>=1) { sr(c,'⚠  |r| must be < 1 for convergence.\n|r| = '+Math.abs(r).toFixed(4)+' ≥ 1 → series diverges'); return; }
+  sr(c,'S∞ = '+(a/(1-r)).toFixed(6)+'\n\nS∞ = a/(1−r)\n   = '+a+'/(1−'+r+')\n\n✓ Converges since |'+r+'| < 1');
+}
+function calcHarm(e, btn) {
+  e.stopPropagation();
+  var c = gc(btn), n = gv(c,'.in');
+  if (!ok(n)||n<1) { sr(c,'⚠  Enter n ≥ 1'); return; }
+  var S=0; for (var i=1;i<=n;i++) S+=1/i;
+  sr(c,'Hₙ = '+S.toFixed(8)+'\n\nHₙ = 1 + ½ + ⅓ + … + 1/'+n+'\n\nApprox: ln('+n+') + γ\n      ≈ '+(Math.log(n)+0.5772156649).toFixed(6)+'\n\n⚠  Full harmonic series diverges to ∞');
+}
+
+/* ============================================
    PATTERN GENERATORS
-══════════════════════════════════════ */
+   ============================================ */
 function genAP(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), d = gv(card,'.input-d'), n = gv(card,'.input-n');
-  if (!ok(a)||!ok(d)||!ok(n)||n<1) { setOutput(card,'⚠ Enter valid a, d and n ≥ 1'); return; }
-  setOutput(card, Array.from({length:Math.min(n,50)},(_,i)=>+(a+i*d).toFixed(8)).join(', '));
+  var c = gc(btn), a = gv(c,'.ia'), d = gv(c,'.id'), n = gv(c,'.in');
+  if (!ok(a)||!ok(d)||!ok(n)||n<1) { so(c,'⚠  Enter valid a, d and n ≥ 1'); return; }
+  var out = [];
+  for (var i=0;i<Math.min(n,50);i++) out.push(parseFloat((a+i*d).toFixed(8)));
+  so(c, out.join(', '));
 }
-
 function genGP(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), a = gv(card,'.input-a'), r = gv(card,'.input-r'), n = gv(card,'.input-n');
-  if (!ok(a)||!ok(r)||!ok(n)||n<1) { setOutput(card,'⚠ Enter valid a, r and n ≥ 1'); return; }
-  setOutput(card, Array.from({length:Math.min(n,20)},(_,i)=>+(a*Math.pow(r,i)).toFixed(6)).join(', '));
+  var c = gc(btn), a = gv(c,'.ia'), r = gv(c,'.ir'), n = gv(c,'.in');
+  if (!ok(a)||!ok(r)||!ok(n)||n<1) { so(c,'⚠  Enter valid a, r and n ≥ 1'); return; }
+  var out = [];
+  for (var i=0;i<Math.min(n,20);i++) out.push(parseFloat((a*Math.pow(r,i)).toFixed(6)));
+  so(c, out.join(', '));
 }
-
-function genSquare(e, btn) {
+function genSq(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), n = gv(card,'.input-n');
-  if (!ok(n)||n<1) { setOutput(card,'⚠ Enter n ≥ 1'); return; }
-  setOutput(card, Array.from({length:Math.min(n,30)},(_,i)=>(i+1)*(i+1)).join(', '));
+  var c = gc(btn), n = gv(c,'.in');
+  if (!ok(n)||n<1) { so(c,'⚠  Enter n ≥ 1'); return; }
+  var out = [];
+  for (var i=1;i<=Math.min(n,30);i++) out.push(i*i);
+  so(c, out.join(', '));
 }
-
-function genTriangular(e, btn) {
+function genTri(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), n = gv(card,'.input-n');
-  if (!ok(n)||n<1) { setOutput(card,'⚠ Enter n ≥ 1'); return; }
-  setOutput(card, Array.from({length:Math.min(n,30)},(_,i)=>((i+1)*(i+2)/2)).join(', '));
+  var c = gc(btn), n = gv(c,'.in');
+  if (!ok(n)||n<1) { so(c,'⚠  Enter n ≥ 1'); return; }
+  var out = [];
+  for (var i=1;i<=Math.min(n,30);i++) out.push((i*(i+1))/2);
+  so(c, out.join(', '));
 }
-
-function genFibo(e, btn) {
+function genFib(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), n = gv(card,'.input-n');
-  if (!ok(n)||n<2) { setOutput(card,'⚠ Enter n ≥ 2'); return; }
-  const f = [0,1];
-  for (let i=2; i<Math.min(n,40); i++) f.push(f[i-1]+f[i-2]);
-  setOutput(card, f.slice(0,Math.min(n,40)).join(', '));
+  var c = gc(btn), n = gv(c,'.in');
+  if (!ok(n)||n<2) { so(c,'⚠  Enter n ≥ 2'); return; }
+  var f=[0,1];
+  for (var i=2;i<Math.min(n,40);i++) f.push(f[i-1]+f[i-2]);
+  so(c, f.slice(0,Math.min(n,40)).join(', '));
 }
-
 function genDots(e, btn) {
   e.stopPropagation();
-  const card = getCard(btn), n = gv(card,'.input-n');
-  if (!ok(n)||n<1) { setOutput(card,'⚠ Enter n ≥ 1'); return; }
-  let out = '';
-  for (let i=1; i<=Math.min(n,18); i++) out += '★ '.repeat(i).trim()+'\n';
-  setOutput(card, out.trim());
+  var c = gc(btn), n = gv(c,'.in');
+  if (!ok(n)||n<1) { so(c,'⚠  Enter n ≥ 1'); return; }
+  var out='';
+  for (var i=1;i<=Math.min(n,18);i++) out+='★ '.repeat(i).trim()+'\n';
+  so(c, out.trim());
 }
 
-/* ══════════════════════════════════════
-   SCROLL TO TOP
-══════════════════════════════════════ */
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+/* ---- Scroll to top ---- */
+function scrollTop() { window.scrollTo({ top:0, behavior:'smooth' }); }
 
-/* ══════════════════════════════════════
+/* ============================================
    INIT
-══════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  /* Hide all calculators on load */
-  document.querySelectorAll('.calculator').forEach(c => c.classList.add('hidden'));
+   ============================================ */
+document.addEventListener('DOMContentLoaded', function () {
+  /* Hide all calculator bodies */
+  document.querySelectorAll('.cbody').forEach(function(b) { b.classList.remove('open'); });
 
-  /* Start scroll reveal */
+  /* Start reveal */
   initReveal();
 
-  /* Close mobile menu on drawer link click */
-  document.querySelectorAll('#mobileDrawer a').forEach(a => {
+  /* Close drawer on drawer link click */
+  document.querySelectorAll('#drawer a').forEach(function(a) {
     a.addEventListener('click', closeMenu);
   });
 
-  /* Enter key inside an input triggers the primary button */
-  document.addEventListener('keydown', e => {
+  /* Enter key triggers primary button inside a calc */
+  document.addEventListener('keydown', function(e) {
     if (e.key !== 'Enter') return;
-    const f = document.activeElement;
+    var f = document.activeElement;
     if (!f || f.tagName !== 'INPUT') return;
-    const calc = f.closest('.calculator');
-    if (!calc) return;
-    const btn = calc.querySelector('button.btn-primary');
+    var body = f.closest('.cbody');
+    if (!body) return;
+    var btn = body.querySelector('.b-calc');
     if (btn) btn.click();
   });
 });

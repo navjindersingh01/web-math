@@ -1,203 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn and generate mathematical patterns like AP, GP, Fibonacci, and more.">
-  <title>Patterns — Web Math</title>
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Generate and learn arithmetic, geometric, Fibonacci and visual patterns interactively.">
+<title>Patterns — Web Math</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
 <nav class="navbar" id="navbar">
-  <a class="logo" href="../index.html"><div class="logo-mark">∑</div>Web Math</a>
+  <a class="logo" href="../index.html"><div class="logo-sq">∑</div>Web Math</a>
   <ul class="nav-links">
-    <li><a href="../index.html">🏠 Home</a></li>
-    <li><a href="areas.html">📐 Areas</a></li>
-    <li><a href="patterns.html" class="active">🔢 Patterns</a></li>
-    <li><a href="series.html">∑ Series</a></li>
-    <li><a href="author.html">👤 Author</a></li>
+    <li><a href="../index.html"><span class="ni">🏠</span> Home</a></li>
+    <li><a href="areas.html"><span class="ni">📐</span> Areas</a></li>
+    <li><a href="patterns.html" class="active"><span class="ni">🔢</span> Patterns</a></li>
+    <li><a href="series.html"><span class="ni">∑</span> Series</a></li>
+    <li><a href="author.html"><span class="ni">👤</span> Author</a></li>
   </ul>
-  <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Open menu">
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<nav class="mobile-drawer" id="mobileDrawer">
-  <a href="../index.html"><span class="m-icon">🏠</span>Home</a>
-  <a href="areas.html"><span class="m-icon">📐</span>Areas</a>
-  <a href="patterns.html" class="active"><span class="m-icon">🔢</span>Patterns</a>
-  <a href="series.html"><span class="m-icon">∑</span>Series</a>
-  <a href="author.html"><span class="m-icon">👤</span>Author</a>
+
+<nav class="drawer" id="drawer">
+  <a href="../index.html"><span class="di">🏠</span>Home</a>
+  <a href="areas.html"><span class="di">📐</span>Areas</a>
+  <a href="patterns.html" class="active"><span class="di">🔢</span>Patterns</a>
+  <a href="series.html"><span class="di">∑</span>Series</a>
+  <a href="author.html"><span class="di">👤</span>Author</a>
 </nav>
-<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <header class="page-hero">
-  <div class="page-eyebrow">🔢 Number Theory</div>
+  <div class="page-ey">🔢 Number Theory</div>
   <h1>Mathematical Patterns</h1>
-  <p>Patterns are the heartbeat of mathematics. Discover the rules behind famous sequences and generate them interactively.</p>
+  <p>Patterns are the language of mathematics. Discover the rules behind famous sequences and generate them live.</p>
 </header>
 
 <main>
-  <div class="section-wrap">
-    <div class="theory-panel reveal">
-      <h3>What is a Mathematical Pattern?</h3>
-      <p>A <strong>pattern</strong> is a sequence following a predictable rule. Recognising patterns is the core of mathematical thinking — from elementary counting to machine learning. Patterns appear in flower petals (Fibonacci), crystal structures (geometric), and financial models (arithmetic).</p>
-      <p>Every pattern has a <strong>general term formula</strong> (nth term) that lets you jump to any position without computing all prior terms. Click any card below to open its generator.</p>
-      <div class="key-grid">
-        <div class="key-cell"><div class="kc-label">Arithmetic</div><div class="kc-val">Constant difference</div></div>
-        <div class="key-cell"><div class="kc-label">Geometric</div><div class="kc-val">Constant ratio</div></div>
-        <div class="key-cell"><div class="kc-label">Fibonacci</div><div class="kc-val">Recursive sum</div></div>
-        <div class="key-cell"><div class="kc-label">Golden φ</div><div class="kc-val">≈ 1.61803</div></div>
-      </div>
-    </div>
-    <div class="section-label">Pattern Generators</div>
-    <div class="cards">
+<div class="wrap">
 
-      <!-- ARITHMETIC -->
-      <div class="card reveal" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Arithmetic Pattern (AP)</h2>
-            <div class="card-sub">Each term changes by a constant difference d. Example: 3, 7, 11, 15…</div>
-            <div class="card-formula">aₙ = a + (n−1)d</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">The <strong>common difference</strong> d can be positive (growing) or negative (shrinking). Applications: uniform motion distances, simple interest, salary increments. Max 50 terms generated.</div>
-          <div class="output"></div>
-          <div class="field-group"><label class="field-label">First term (a)</label><input type="number" class="input-a" placeholder="e.g. 2"></div>
-          <div class="field-group"><label class="field-label">Common difference (d)</label><input type="number" class="input-d" placeholder="e.g. 3"></div>
-          <div class="field-group"><label class="field-label">Number of terms (n, max 50)</label><input type="number" class="input-n" placeholder="e.g. 10" min="1" max="50"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genAP(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GEOMETRIC -->
-      <div class="card reveal reveal-d1" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Geometric Pattern (GP)</h2>
-            <div class="card-sub">Each term is multiplied by a constant ratio r. Example: 2, 6, 18, 54…</div>
-            <div class="card-formula">aₙ = a × r^(n−1)</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">When |r| &gt; 1 the sequence <strong>grows exponentially</strong>; when |r| &lt; 1 it decays toward zero. Models: population growth, compound interest, radioactive decay, and computer memory (KB → MB → GB, r = 1024).</div>
-          <div class="output"></div>
-          <div class="field-group"><label class="field-label">First term (a)</label><input type="number" class="input-a" placeholder="e.g. 2"></div>
-          <div class="field-group"><label class="field-label">Common ratio (r)</label><input type="number" class="input-r" placeholder="e.g. 3"></div>
-          <div class="field-group"><label class="field-label">Number of terms (n, max 20)</label><input type="number" class="input-n" placeholder="e.g. 8" min="1" max="20"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genGP(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- SQUARE -->
-      <div class="card reveal reveal-d2" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Square Numbers</h2>
-            <div class="card-sub">Product of an integer with itself. Example: 1, 4, 9, 16, 25…</div>
-            <div class="card-formula">aₙ = n²</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">The gap between consecutive squares is always an <strong>odd number</strong> (3, 5, 7…) because n² − (n−1)² = 2n−1. Square numbers are central to the Pythagorean theorem and quadratic equations.</div>
-          <div class="output"></div>
-          <div class="field-group"><label class="field-label">Number of terms (n, max 30)</label><input type="number" class="input-n" placeholder="e.g. 10" min="1" max="30"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genSquare(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- TRIANGULAR -->
-      <div class="card reveal" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Triangular Numbers</h2>
-            <div class="card-sub">Dots arranged in equilateral triangles. Example: 1, 3, 6, 10, 15…</div>
-            <div class="card-formula">Tₙ = n(n+1) / 2</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">Tₙ = 1+2+3+…+n — the formula Gauss used to sum 1–100 instantly. They appear in Pascal's Triangle (2nd diagonal), combinatorics C(n+1,2) = Tₙ, and handshake counting problems.</div>
-          <div class="output"></div>
-          <div class="field-group"><label class="field-label">Number of terms (n, max 30)</label><input type="number" class="input-n" placeholder="e.g. 10" min="1" max="30"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genTriangular(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- FIBONACCI -->
-      <div class="card reveal reveal-d1" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Fibonacci Sequence</h2>
-            <div class="card-sub">Each term = sum of previous two. Example: 0, 1, 1, 2, 3, 5, 8, 13…</div>
-            <div class="card-formula">Fₙ = Fₙ₋₁ + Fₙ₋₂</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">As n → ∞, Fₙ/Fₙ₋₁ → <strong>φ = (1+√5)/2 ≈ 1.618</strong> (the Golden Ratio). Found in sunflower spirals, nautilus shells, galaxy arms, and the proportions of classical architecture.</div>
-          <div class="output"></div>
-          <div class="field-group"><label class="field-label">Number of terms (n, max 40)</label><input type="number" class="input-n" placeholder="e.g. 12" min="2" max="40"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genFibo(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- DOT -->
-      <div class="card reveal reveal-d2" onclick="togglePattern(this)">
-        <div class="card-header">
-          <div class="card-header-body">
-            <h2>Star / Dot Pattern</h2>
-            <div class="card-sub">Visual triangle of stars — row n has exactly n stars. Classic loop exercise.</div>
-            <div class="card-formula">Stars in row n = n</div>
-          </div>
-          <div class="card-toggle">+</div>
-        </div>
-        <div class="calculator hidden" onclick="event.stopPropagation()">
-          <div class="card-theory">Total stars after n rows = 1+2+…+n = <strong>Tₙ</strong> (triangular number). This pattern is a classic introduction to nested loops in programming and visualises arithmetic series row by row.</div>
-          <div class="output" style="font-size:.95rem;line-height:1.5;letter-spacing:2px;"></div>
-          <div class="field-group"><label class="field-label">Number of rows (max 18)</label><input type="number" class="input-n" placeholder="e.g. 6" min="1" max="18"></div>
-          <div class="btn-group">
-            <button class="btn-primary" onclick="genDots(event,this)">Generate</button>
-            <button class="btn-reset" onclick="resetCard(event,this)">Reset</button>
-            <button class="btn-copy" onclick="copyOutput(event,this)">Copy</button>
-          </div>
-        </div>
-      </div>
-
+  <div class="theory reveal">
+    <h3>What is a Mathematical Pattern?</h3>
+    <p>A <strong>pattern</strong> is a sequence of numbers or objects that follows a predictable rule. Recognising patterns is a fundamental skill in mathematics — from simple counting to the algorithms that power search engines and AI.</p>
+    <p>Every pattern has a <strong>general term formula</strong> (the nth term), which lets you calculate any term directly without working through every prior term. Click a card below to open its generator.</p>
+    <div class="kgrid">
+      <div class="kcell"><div class="kcell-l">Arithmetic</div><div class="kcell-v">+d each step</div></div>
+      <div class="kcell"><div class="kcell-l">Geometric</div><div class="kcell-v">×r each step</div></div>
+      <div class="kcell"><div class="kcell-l">Fibonacci</div><div class="kcell-v">Sum of prev two</div></div>
+      <div class="kcell"><div class="kcell-l">Golden φ</div><div class="kcell-v">≈ 1.61803…</div></div>
     </div>
   </div>
+
+  <div class="sec-label">Pattern Generators</div>
+  <div class="cgrid">
+
+    <!-- AP -->
+    <div class="ccard reveal" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Arithmetic Pattern (AP)</h2>
+          <div class="csub">Add a constant difference d each time. Example: 3, 7, 11, 15…</div>
+          <div class="cformula">aₙ = a + (n−1)d</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">d can be positive (growing) or negative (shrinking). Applications include <strong>uniform motion</strong> (equal distances in equal times), simple interest, and evenly spaced design grids.</div>
+        <div class="output"></div>
+        <div class="fg"><label class="fl-lbl">First term (a)</label><input type="number" class="ia" placeholder="e.g. 2"></div>
+        <div class="fg"><label class="fl-lbl">Common difference (d)</label><input type="number" class="id" placeholder="e.g. 3"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n, max 50)</label><input type="number" class="in" placeholder="e.g. 10" min="1" max="50"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genAP(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GP -->
+    <div class="ccard reveal d1" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Geometric Pattern (GP)</h2>
+          <div class="csub">Multiply by constant ratio r each time. Example: 2, 6, 18, 54…</div>
+          <div class="cformula">aₙ = a × r^(n−1)</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">|r| &gt; 1 → exponential growth; |r| &lt; 1 → decay toward zero. Models <strong>compound interest</strong>, population growth, radioactive decay and computer storage (KB → MB → GB, r = 1024).</div>
+        <div class="output"></div>
+        <div class="fg"><label class="fl-lbl">First term (a)</label><input type="number" class="ia" placeholder="e.g. 2"></div>
+        <div class="fg"><label class="fl-lbl">Common ratio (r)</label><input type="number" class="ir" placeholder="e.g. 3"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n, max 20)</label><input type="number" class="in" placeholder="e.g. 8" min="1" max="20"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genGP(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Square -->
+    <div class="ccard reveal d2" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Square Numbers</h2>
+          <div class="csub">n × n for each positive integer. Example: 1, 4, 9, 16, 25…</div>
+          <div class="cformula">aₙ = n²</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">The gap between consecutive squares is always an <strong>odd number</strong> — because n² − (n−1)² = 2n−1. Square numbers are central to Pythagoras' theorem and quadratic equations.</div>
+        <div class="output"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n, max 30)</label><input type="number" class="in" placeholder="e.g. 10" min="1" max="30"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genSq(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Triangular -->
+    <div class="ccard reveal" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Triangular Numbers</h2>
+          <div class="csub">Dots forming equilateral triangles. Example: 1, 3, 6, 10, 15…</div>
+          <div class="cformula">Tₙ = n(n+1) / 2</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">Tₙ = 1+2+3+…+n — the sum Gauss computed in seconds as a child. They appear in Pascal's Triangle, in combinations C(n+1,2) = Tₙ, and in handshake-counting problems.</div>
+        <div class="output"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n, max 30)</label><input type="number" class="in" placeholder="e.g. 10" min="1" max="30"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genTri(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fibonacci -->
+    <div class="ccard reveal d1" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Fibonacci Sequence</h2>
+          <div class="csub">Each term is the sum of the previous two. 0, 1, 1, 2, 3, 5, 8, 13…</div>
+          <div class="cformula">Fₙ = Fₙ₋₁ + Fₙ₋₂</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">As n→∞, Fₙ/Fₙ₋₁ → <strong>φ = (1+√5)/2 ≈ 1.618</strong> (the Golden Ratio). Appears in sunflower spirals, nautilus shells, pinecones, galaxy arms and classical architecture proportions.</div>
+        <div class="output"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n, max 40)</label><input type="number" class="in" placeholder="e.g. 12" min="2" max="40"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genFib(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="ccard reveal d2" onclick="togglePattern(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Star / Dot Pattern</h2>
+          <div class="csub">A visual triangle — row n contains exactly n stars.</div>
+          <div class="cformula">Row n → n stars</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">Total stars after n rows = 1+2+…+n = <strong>Tₙ</strong> (triangular number). The classic introduction to nested loops in programming; every row adds one more star than the last.</div>
+        <div class="output" style="font-size:.9rem;line-height:1.5;letter-spacing:3px;"></div>
+        <div class="fg"><label class="fl-lbl">Number of rows (max 18)</label><input type="number" class="in" placeholder="e.g. 6" min="1" max="18"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="genDots(event,this)">Generate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cgrid -->
+</div><!-- /wrap -->
 </main>
 
 <footer>
   <p>© 2026 Navjinder Singh</p>
-  <div class="footer-brand"><div class="footer-mark">∑</div>Web Math</div>
+  <div class="f-brand"><div class="f-sq">∑</div>Web Math</div>
 </footer>
-<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toastMsg">Done!</span></div>
-<button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">↑</button>
+<div class="toast" id="toast"><span class="t-ico">✓</span><span id="tmsg">Done!</span></div>
+<button class="s2t" id="s2t" onclick="scrollTop()" aria-label="Back to top">↑</button>
 <script src="../js/main.js"></script>
 </body>
 </html>

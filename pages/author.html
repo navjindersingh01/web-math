@@ -1,118 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Navjinder Singh — BBA Business Analytics student and creator of Web Math.">
-    <title>Author — Web Math</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Navjinder Singh — BBA Business Analytics student at LPU and creator of Web Math.">
+<title>Author — Web Math</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-    <a class="logo" href="../index.html">
-        <div class="logo-mark">∑</div>
-        Web Math
-    </a>
-    <ul class="nav-links">
-        <li><a href="../index.html">🏠 Home</a></li>
-        <li><a href="areas.html">📐 Areas</a></li>
-        <li><a href="patterns.html">🔢 Patterns</a></li>
-        <li><a href="series.html">∑ Series</a></li>
-        <li><a href="author.html" class="active">👤 Author</a></li>
-    </ul>
-    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-    </button>
+  <a class="logo" href="../index.html"><div class="logo-sq">∑</div>Web Math</a>
+  <ul class="nav-links">
+    <li><a href="../index.html"><span class="ni">🏠</span> Home</a></li>
+    <li><a href="areas.html"><span class="ni">📐</span> Areas</a></li>
+    <li><a href="patterns.html"><span class="ni">🔢</span> Patterns</a></li>
+    <li><a href="series.html"><span class="ni">∑</span> Series</a></li>
+    <li><a href="author.html" class="active"><span class="ni">👤</span> Author</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
-<nav class="mobile-drawer" id="drawer">
-    <a href="../index.html"><span class="m-icon">🏠</span>Home</a>
-    <a href="areas.html"><span class="m-icon">📐</span>Areas</a>
-    <a href="patterns.html"><span class="m-icon">🔢</span>Patterns</a>
-    <a href="series.html"><span class="m-icon">∑</span>Series</a>
-    <a href="author.html" class="active"><span class="m-icon">👤</span>Author</a>
+<nav class="drawer" id="drawer">
+  <a href="../index.html"><span class="di">🏠</span>Home</a>
+  <a href="areas.html"><span class="di">📐</span>Areas</a>
+  <a href="patterns.html"><span class="di">🔢</span>Patterns</a>
+  <a href="series.html"><span class="di">∑</span>Series</a>
+  <a href="author.html" class="active"><span class="di">👤</span>Author</a>
 </nav>
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- PAGE HERO -->
 <header class="page-hero">
-    <div class="page-hero-inner">
-        <div class="page-eyebrow">👤 About</div>
-        <h1>The Author</h1>
-        <p>The person behind Web Math — built with curiosity, code, and a belief that mathematics is for everyone.</p>
-    </div>
+  <div class="page-ey">👤 About</div>
+  <h1>The Author</h1>
+  <p>The person behind Web Math — student, analyst, and mathematics enthusiast.</p>
 </header>
 
-<!-- MAIN -->
 <main>
-<div class="author-section">
+<div class="author-pg">
+  <div class="author-box reveal">
 
-    <div class="author-card-wrap reveal">
-        <!-- Banner -->
-        <div class="author-banner">
-            <div class="author-banner-dots"></div>
-            <div class="author-avatar-ring">
-                <!-- Shows image if present, fallback to initial -->
-                <img src="../images/1761599930.jpg"
-                     alt="Navjinder Singh"
-                     class="author-img"
-                     onerror="this.style.display='none'; document.getElementById('author-fallback').style.display='flex';">
-                <div class="author-avatar-inner" id="author-fallback" style="display:none;">N</div>
-            </div>
+    <!-- Banner -->
+    <div class="a-banner">
+      <div class="a-dots"></div>
+      <div class="a-avatar">
+        <div class="a-avatar-in">
+          <img
+            src="../images/1761599930.jpg"
+            alt="Navjinder Singh"
+            class="a-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          >
+          <span class="a-fb" style="display:none;">N</span>
         </div>
-
-        <!-- Body -->
-        <div class="author-body">
-            <h2>Navjinder Singh</h2>
-            <div class="author-role">Student · BBA (Business Analytics)</div>
-            <div class="author-uni">Lovely Professional University</div>
-
-            <div class="skill-chips">
-                <span class="skill-chip">Business Analytics</span>
-                <span class="skill-chip">Data Analytics</span>
-                <span class="skill-chip">Mathematics</span>
-                <span class="skill-chip">Web Development</span>
-                <span class="skill-chip">Problem Solving</span>
-            </div>
-
-            <p class="author-bio">
-                I am a student at Lovely Professional University, specialising in Business Analytics.
-                Committed to developing essential analytical and technical skills, I thrive in collaborative
-                environments that facilitate learning from experienced professionals. I actively seek
-                mentorship opportunities and aim to connect with fellow professionals for collaboration
-                and knowledge sharing, fostering a network that encourages growth and innovation in data analytics.
-                <br><br>
-                <strong>Web Math</strong> was built to make foundational mathematics accessible, interactive, and
-                genuinely enjoyable — because mathematics is not just computation; it is a way of thinking clearly about the world.
-            </p>
-
-            <div class="social-links">
-                <a class="social-btn" href="https://github.com/navjindersingh01" target="_blank" rel="noopener noreferrer">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                    GitHub
-                </a>
-                <a class="social-btn" href="https://www.linkedin.com/in/navjindersingh/" target="_blank" rel="noopener noreferrer">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
+      </div>
     </div>
 
+    <!-- Body -->
+    <div class="a-body">
+      <h2 class="a-name">Navjinder Singh</h2>
+      <p class="a-role">Student &middot; BBA (Business Analytics)</p>
+      <p class="a-uni">Lovely Professional University, Punjab</p>
+
+      <div class="chips">
+        <span class="chip">Business Analytics</span>
+        <span class="chip">Data Analytics</span>
+        <span class="chip">Mathematics</span>
+        <span class="chip">Web Development</span>
+        <span class="chip">Problem Solving</span>
+        <span class="chip">Data Visualisation</span>
+      </div>
+
+      <p class="a-bio">
+        I am a student at Lovely Professional University, specialising in Business Analytics.
+        Committed to developing essential analytical and technical skills, I thrive in collaborative
+        environments that facilitate learning from experienced professionals. I actively seek
+        mentorship opportunities and aim to connect with fellow professionals for collaboration
+        and knowledge sharing — fostering a network that encourages growth and innovation in data analytics.
+        <br><br>
+        <strong>Web Math</strong> was built to make foundational mathematics genuinely accessible and
+        interactive. Because mathematics is not just computation — it is a way of thinking clearly
+        about the world, and everyone deserves to experience that.
+      </p>
+
+      <div class="socials">
+        <a class="soc-btn" href="https://github.com/navjindersingh01" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a class="soc-btn" href="https://www.linkedin.com/in/navjindersingh/" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+  </div>
 </div>
 </main>
 
 <footer>
-    <p>© 2026 Navjinder Singh</p>
-    <div class="footer-logo"><div class="lm">∑</div>Web Math</div>
+  <p>© 2026 Navjinder Singh</p>
+  <div class="f-brand"><div class="f-sq">∑</div>Web Math</div>
 </footer>
-
-<div class="toast" id="toast"><span class="ti">✓</span><span id="toast-msg">Copied!</span></div>
-<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
+<div class="toast" id="toast"><span class="t-ico">✓</span><span id="tmsg">Done!</span></div>
+<button class="s2t" id="s2t" onclick="scrollTop()" aria-label="Back to top">↑</button>
 <script src="../js/main.js"></script>
 </body>
 </html>

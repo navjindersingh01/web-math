@@ -1,204 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn and calculate arithmetic, geometric, and harmonic series interactively.">
-    <title>Series — Web Math</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calculate arithmetic, geometric and harmonic series sums interactively with theory and step-by-step results.">
+<title>Series — Web Math</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-    <a class="logo" href="../index.html">
-        <div class="logo-mark">∑</div>
-        Web Math
-    </a>
-    <ul class="nav-links">
-        <li><a href="../index.html">🏠 Home</a></li>
-        <li><a href="areas.html">📐 Areas</a></li>
-        <li><a href="patterns.html">🔢 Patterns</a></li>
-        <li><a href="series.html" class="active">∑ Series</a></li>
-        <li><a href="author.html">👤 Author</a></li>
-    </ul>
-    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-    </button>
+  <a class="logo" href="../index.html"><div class="logo-sq">∑</div>Web Math</a>
+  <ul class="nav-links">
+    <li><a href="../index.html"><span class="ni">🏠</span> Home</a></li>
+    <li><a href="areas.html"><span class="ni">📐</span> Areas</a></li>
+    <li><a href="patterns.html"><span class="ni">🔢</span> Patterns</a></li>
+    <li><a href="series.html" class="active"><span class="ni">∑</span> Series</a></li>
+    <li><a href="author.html"><span class="ni">👤</span> Author</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
-<nav class="mobile-drawer" id="drawer">
-    <a href="../index.html"><span class="m-icon">🏠</span>Home</a>
-    <a href="areas.html"><span class="m-icon">📐</span>Areas</a>
-    <a href="patterns.html"><span class="m-icon">🔢</span>Patterns</a>
-    <a href="series.html" class="active"><span class="m-icon">∑</span>Series</a>
-    <a href="author.html"><span class="m-icon">👤</span>Author</a>
+<nav class="drawer" id="drawer">
+  <a href="../index.html"><span class="di">🏠</span>Home</a>
+  <a href="areas.html"><span class="di">📐</span>Areas</a>
+  <a href="patterns.html"><span class="di">🔢</span>Patterns</a>
+  <a href="series.html" class="active"><span class="di">∑</span>Series</a>
+  <a href="author.html"><span class="di">👤</span>Author</a>
 </nav>
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-<!-- PAGE HERO -->
 <header class="page-hero">
-    <div class="page-hero-inner">
-        <div class="page-eyebrow">∑ Summation</div>
-        <h1>Mathematical Series</h1>
-        <p>A series is the sum of the terms of a sequence. Understand finite sums, convergence, and divergence through guided calculators with full step-by-step working.</p>
-    </div>
+  <div class="page-ey">∑ Summation</div>
+  <h1>Mathematical Series</h1>
+  <p>A series is the sum of a sequence. Learn about finite sums, convergence and divergence through interactive calculators with full working.</p>
 </header>
 
-<!-- MAIN -->
 <main>
-<div class="section-wrap">
+<div class="wrap">
 
-    <div class="theory-panel reveal">
-        <h3>Series vs. Sequence</h3>
-        <p>A <strong>sequence</strong> lists numbers in order: 1, 2, 3, 4… A <strong>series</strong> adds them: 1+2+3+4+… = Sₙ. Series can be <strong>finite</strong> (fixed upper bound) or <strong>infinite</strong>. An infinite series either <em>converges</em> to a finite limit or <em>diverges</em> to ±∞.</p>
-        <p>Determining convergence is one of the central questions of calculus and real analysis — with profound implications in physics, engineering, and computer science.</p>
-        <div class="formula-line"><span class="fl-label">General sum:</span> Sₙ = a₁ + a₂ + … + aₙ = Σᵢ₌₁ⁿ aᵢ</div>
-        <div class="key-grid">
-            <div class="key-cell"><div class="kc-label">Finite sum</div><div class="kc-val">Fixed n</div></div>
-            <div class="key-cell"><div class="kc-label">Convergent</div><div class="kc-val">S → finite value</div></div>
-            <div class="key-cell"><div class="kc-label">Divergent</div><div class="kc-val">S → ±∞</div></div>
-            <div class="key-cell"><div class="kc-label">Symbol</div><div class="kc-val">Σ (sigma)</div></div>
+  <div class="theory reveal">
+    <h3>Series vs. Sequence</h3>
+    <p>A <strong>sequence</strong> is an ordered list: 1, 2, 3, 4… A <strong>series</strong> is what you get when you add them up: 1+2+3+4+… = Sₙ.</p>
+    <p>Series can be <strong>finite</strong> (a fixed number of terms) or <strong>infinite</strong>. An infinite series either <em>converges</em> to a finite value or <em>diverges</em> to ±∞. Convergence is one of the most profound ideas in all of mathematics and underpins calculus, physics and engineering.</p>
+    <div class="fline"><span class="fl">General form:</span>Sₙ = a₁ + a₂ + … + aₙ = Σ aᵢ, i = 1 to n</div>
+    <div class="kgrid">
+      <div class="kcell"><div class="kcell-l">Finite</div><div class="kcell-v">Fixed n terms</div></div>
+      <div class="kcell"><div class="kcell-l">Convergent</div><div class="kcell-v">Sum → finite</div></div>
+      <div class="kcell"><div class="kcell-l">Divergent</div><div class="kcell-v">Sum → ∞</div></div>
+      <div class="kcell"><div class="kcell-l">Notation</div><div class="kcell-v">Σ (sigma)</div></div>
+    </div>
+  </div>
+
+  <div class="sec-label">Series Calculators</div>
+  <div class="cgrid">
+
+    <!-- AP Sum -->
+    <div class="ccard reveal" onclick="toggleSeries(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Arithmetic Series</h2>
+          <div class="csub">Sum of n terms with first term a and common difference d.</div>
+          <div class="cformula">Sₙ = n/2 · (2a + (n−1)d)</div>
         </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">Young Gauss summed 1 to 100 = <strong>5050</strong> instantly by pairing terms: (1+100)+(2+99)+… = 50 pairs of 101. The formula encodes this: Sₙ = n × (average of first and last term).</div>
+        <p class="result"></p>
+        <div class="fg"><label class="fl-lbl">First term (a)</label><input type="number" class="ia" placeholder="e.g. 1"></div>
+        <div class="fg"><label class="fl-lbl">Common difference (d)</label><input type="number" class="id" placeholder="e.g. 2"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n)</label><input type="number" class="in" placeholder="e.g. 10" min="1"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="calcAP(event,this)">Calculate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
     </div>
 
-    <div class="section-label">Series Calculators</div>
-
-    <div class="cards-grid">
-
-        <!-- AP SERIES -->
-        <div class="calc-card reveal" onclick="toggleSeries(this)">
-            <div class="cc-header">
-                <div class="cc-header-body">
-                    <h3>Arithmetic Series (AP)</h3>
-                    <div class="cc-sub">Sum of n terms with first term a and common difference d.</div>
-                    <div class="cc-formula">Sₙ = n/2 · (2a + (n−1)d)</div>
-                </div>
-                <div class="cc-toggle">+</div>
-            </div>
-            <div class="cc-body" onclick="event.stopPropagation()">
-                <div class="cc-theory">Young <strong>Gauss</strong> summed 1 to 100 = 5050 in seconds by pairing: (1+100)+(2+99)+… = 50 pairs of 101. The formula encodes this: Sₙ = n × (average of first and last term).</div>
-                <div class="result-box" id="ro-aps" data-ph="Sum appears here…"></div>
-                <div class="input-group">
-                    <label class="field-label">First term (a)</label>
-                    <input type="number" class="field input-a" placeholder="e.g. 1">
-                </div>
-                <div class="input-group">
-                    <label class="field-label">Common difference (d)</label>
-                    <input type="number" class="field input-d" placeholder="e.g. 2">
-                </div>
-                <div class="input-group">
-                    <label class="field-label">Number of terms (n)</label>
-                    <input type="number" class="field input-n" placeholder="e.g. 10" min="1">
-                </div>
-                <div class="btn-row">
-                    <button class="btn btn-primary" onclick="calcAP(event, this)">Calculate</button>
-                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
-                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
-                </div>
-            </div>
+    <!-- GP Sum -->
+    <div class="ccard reveal d1" onclick="toggleSeries(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Geometric Series</h2>
+          <div class="csub">Sum of n terms with first term a and common ratio r (r ≠ 1).</div>
+          <div class="cformula">Sₙ = a(1 − rⁿ) / (1 − r)</div>
         </div>
-
-        <!-- GP SERIES -->
-        <div class="calc-card reveal reveal-delay-1" onclick="toggleSeries(this)">
-            <div class="cc-header">
-                <div class="cc-header-body">
-                    <h3>Geometric Series (GP)</h3>
-                    <div class="cc-sub">Sum of n terms of a geometric sequence (r ≠ 1).</div>
-                    <div class="cc-formula">Sₙ = a(1 − rⁿ) / (1 − r)</div>
-                </div>
-                <div class="cc-toggle">+</div>
-            </div>
-            <div class="cc-body" onclick="event.stopPropagation()">
-                <div class="cc-theory">Compound interest over n periods is a GP series. Also models <strong>binary storage</strong>: 1, 2, 4, 8… bytes (a=1, r=2). When r = 1, use Sₙ = n × a.</div>
-                <div class="result-box" id="ro-gps" data-ph="Sum appears here…"></div>
-                <div class="input-group">
-                    <label class="field-label">First term (a)</label>
-                    <input type="number" class="field input-a" placeholder="e.g. 2">
-                </div>
-                <div class="input-group">
-                    <label class="field-label">Common ratio (r)</label>
-                    <input type="number" class="field input-r" placeholder="e.g. 3">
-                </div>
-                <div class="input-group">
-                    <label class="field-label">Number of terms (n)</label>
-                    <input type="number" class="field input-n" placeholder="e.g. 6" min="1">
-                </div>
-                <div class="btn-row">
-                    <button class="btn btn-primary" onclick="calcGP(event, this)">Calculate</button>
-                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
-                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
-                </div>
-            </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote"><strong>Compound interest</strong> over n periods is a geometric series. Binary storage is too: 1, 2, 4, 8… bytes (a=1, r=2). The formula is derived by multiplying the series by r, then subtracting.</div>
+        <p class="result"></p>
+        <div class="fg"><label class="fl-lbl">First term (a)</label><input type="number" class="ia" placeholder="e.g. 2"></div>
+        <div class="fg"><label class="fl-lbl">Common ratio (r)</label><input type="number" class="ir" placeholder="e.g. 3"></div>
+        <div class="fg"><label class="fl-lbl">Number of terms (n)</label><input type="number" class="in" placeholder="e.g. 6" min="1"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="calcGP(event,this)">Calculate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
         </div>
-
-        <!-- INFINITE GP -->
-        <div class="calc-card reveal reveal-delay-2" onclick="toggleSeries(this)">
-            <div class="cc-header">
-                <div class="cc-header-body">
-                    <h3>Infinite Geometric Series</h3>
-                    <div class="cc-sub">Converges only when |r| &lt; 1.</div>
-                    <div class="cc-formula">S∞ = a / (1 − r)</div>
-                </div>
-                <div class="cc-toggle">+</div>
-            </div>
-            <div class="cc-body" onclick="event.stopPropagation()">
-                <div class="cc-theory"><strong>Zeno's Paradox</strong>: to cross a room you must first cross half, then half of the rest… infinitely. Yet you arrive — because ½+¼+⅛+… = 1. This converges to a/(1−r) only when |r| &lt; 1.</div>
-                <div class="result-box" id="ro-igp" data-ph="Sum appears here…"></div>
-                <div class="input-group">
-                    <label class="field-label">First term (a)</label>
-                    <input type="number" class="field input-a" placeholder="e.g. 1">
-                </div>
-                <div class="input-group">
-                    <label class="field-label">Ratio r (must satisfy |r| &lt; 1)</label>
-                    <input type="number" class="field input-r" placeholder="e.g. 0.5" step="0.01">
-                </div>
-                <div class="btn-row">
-                    <button class="btn btn-primary" onclick="calcInfiniteGP(event, this)">Calculate</button>
-                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
-                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- HARMONIC -->
-        <div class="calc-card reveal" onclick="toggleSeries(this)">
-            <div class="cc-header">
-                <div class="cc-header-body">
-                    <h3>Harmonic Series</h3>
-                    <div class="cc-sub">1 + ½ + ⅓ + ¼ + … — grows without bound despite shrinking terms.</div>
-                    <div class="cc-formula">Hₙ = Σ 1/k, k = 1 to n</div>
-                </div>
-                <div class="cc-toggle">+</div>
-            </div>
-            <div class="cc-body" onclick="event.stopPropagation()">
-                <div class="cc-theory">Proved divergent by <strong>Nicole Oresme</strong> in the 14th century. The partial sum Hₙ ≈ ln(n) + γ, where γ ≈ 0.5772 is the Euler–Mascheroni constant. A counterintuitive and beautiful result of analysis.</div>
-                <div class="result-box" id="ro-harm" data-ph="Sum appears here…"></div>
-                <div class="input-group">
-                    <label class="field-label">Number of terms (n)</label>
-                    <input type="number" class="field input-n" placeholder="e.g. 20" min="1" max="100000">
-                </div>
-                <div class="btn-row">
-                    <button class="btn btn-primary" onclick="calcHarmonic(event, this)">Calculate</button>
-                    <button class="btn btn-reset"   onclick="resetSeries(event, this)">Reset</button>
-                    <button class="btn btn-copy"    onclick="copySeries(event, this)">Copy</button>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
-</div>
+
+    <!-- Infinite GP -->
+    <div class="ccard reveal d2" onclick="toggleSeries(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Infinite Geometric Series</h2>
+          <div class="csub">Sum of infinitely many terms — converges only when |r| &lt; 1.</div>
+          <div class="cformula">S∞ = a / (1 − r)</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote"><strong>Zeno's Paradox</strong>: to cross a room you first cross half, then half again… yet you arrive. The sum ½ + ¼ + ⅛ + … = 1 resolves this. Diverges for |r| ≥ 1.</div>
+        <p class="result"></p>
+        <div class="fg"><label class="fl-lbl">First term (a)</label><input type="number" class="ia" placeholder="e.g. 1"></div>
+        <div class="fg"><label class="fl-lbl">Ratio r (must satisfy |r| &lt; 1)</label><input type="number" class="ir" placeholder="e.g. 0.5" step="0.01"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="calcInfGP(event,this)">Calculate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Harmonic -->
+    <div class="ccard reveal" onclick="toggleSeries(this)">
+      <div class="cheader">
+        <div class="cheader-body">
+          <h2>Harmonic Series</h2>
+          <div class="csub">1 + ½ + ⅓ + ¼ + … — the most famous divergent series.</div>
+          <div class="cformula">Hₙ = Σ 1/k, k = 1 to n</div>
+        </div>
+        <div class="ctog">+</div>
+      </div>
+      <div class="cbody" onclick="event.stopPropagation()">
+        <div class="cnote">Despite each term shrinking to zero, the sum grows without bound — proved by <strong>Nicole Oresme</strong> (14th century). Growth is slow: Hₙ ≈ ln(n) + γ where γ ≈ 0.5772 is the Euler–Mascheroni constant.</div>
+        <p class="result"></p>
+        <div class="fg"><label class="fl-lbl">Number of terms (n)</label><input type="number" class="in" placeholder="e.g. 20" min="1" max="1000000"></div>
+        <div class="brow">
+          <button class="b-calc" onclick="calcHarm(event,this)">Calculate</button>
+          <button class="b-reset" onclick="resetCard(event,this)">Reset</button>
+          <button class="b-copy" onclick="copyOut(event,this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cgrid -->
+</div><!-- /wrap -->
 </main>
 
 <footer>
-    <p>© 2026 Navjinder Singh</p>
-    <div class="footer-logo"><div class="lm">∑</div>Web Math</div>
+  <p>© 2026 Navjinder Singh</p>
+  <div class="f-brand"><div class="f-sq">∑</div>Web Math</div>
 </footer>
-
-<div class="toast" id="toast"><span class="ti">✓</span><span id="toast-msg">Copied!</span></div>
-<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
+<div class="toast" id="toast"><span class="t-ico">✓</span><span id="tmsg">Done!</span></div>
+<button class="s2t" id="s2t" onclick="scrollTop()" aria-label="Back to top">↑</button>
 <script src="../js/main.js"></script>
 </body>
 </html>

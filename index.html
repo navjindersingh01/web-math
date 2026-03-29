@@ -1,121 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web Math — Interactive mathematics. Learn Areas, Patterns, and Series with formulas, theory, and live calculators.">
-    <title>Web Math</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Web Math — Interactive mathematics. Explore Areas, Patterns and Series with live calculators and rich theory.">
+<title>Web Math</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-    <a class="logo" href="index.html">
-        <div class="logo-mark">∑</div>
-        Web Math
-    </a>
-    <ul class="nav-links">
-        <li><a href="index.html" class="active">🏠 Home</a></li>
-        <li><a href="pages/areas.html">📐 Areas</a></li>
-        <li><a href="pages/patterns.html">🔢 Patterns</a></li>
-        <li><a href="pages/series.html">∑ Series</a></li>
-        <li><a href="pages/author.html">👤 Author</a></li>
-    </ul>
-    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-    </button>
+  <a class="logo" href="index.html">
+    <div class="logo-sq">∑</div>
+    Web Math
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active"><span class="ni">🏠</span> Home</a></li>
+    <li><a href="pages/areas.html"><span class="ni">📐</span> Areas</a></li>
+    <li><a href="pages/patterns.html"><span class="ni">🔢</span> Patterns</a></li>
+    <li><a href="pages/series.html"><span class="ni">∑</span> Series</a></li>
+    <li><a href="pages/author.html"><span class="ni">👤</span> Author</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- MOBILE DRAWER -->
-<nav class="mobile-drawer" id="drawer">
-    <a href="index.html" class="active"><span class="m-icon">🏠</span>Home</a>
-    <a href="pages/areas.html"><span class="m-icon">📐</span>Areas</a>
-    <a href="pages/patterns.html"><span class="m-icon">🔢</span>Patterns</a>
-    <a href="pages/series.html"><span class="m-icon">∑</span>Series</a>
-    <a href="pages/author.html"><span class="m-icon">👤</span>Author</a>
+<nav class="drawer" id="drawer">
+  <a href="index.html"><span class="di">🏠</span>Home</a>
+  <a href="pages/areas.html"><span class="di">📐</span>Areas</a>
+  <a href="pages/patterns.html"><span class="di">🔢</span>Patterns</a>
+  <a href="pages/series.html"><span class="di">∑</span>Series</a>
+  <a href="pages/author.html"><span class="di">👤</span>Author</a>
 </nav>
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <!-- HERO -->
-<header class="hero">
-    <div class="hero-eyebrow">✦ Interactive Math Platform</div>
-    <h1>Learn Maths<br>the <em>Visual</em> Way</h1>
-    <p>Explore geometry, number patterns, and series through interactive calculators, rich theory, and step-by-step explanations.</p>
-    <div class="stats-row">
-        <div class="stat-item reveal">
-            <span class="stat-num">8+</span>
-            <span class="stat-label">Area Formulas</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-1">
-            <span class="stat-num">6</span>
-            <span class="stat-label">Patterns</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-2">
-            <span class="stat-num">4</span>
-            <span class="stat-label">Series Types</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-3">
-            <span class="stat-num">∞</span>
-            <span class="stat-label">Curiosity</span>
-        </div>
-    </div>
+<header class="home-hero">
+  <div class="eyebrow reveal">✦ Interactive Math Platform</div>
+  <h1 class="reveal d1">Learn Maths the<br><span>Visual Way</span></h1>
+  <p class="reveal d2">Explore geometry, number patterns and series through interactive calculators, step-by-step results and real mathematical theory.</p>
+
+  <div class="stats reveal d2">
+    <div class="stat"><span class="stat-n">8+</span><span class="stat-l">Shapes</span></div>
+    <div class="stat"><span class="stat-n">6</span><span class="stat-l">Patterns</span></div>
+    <div class="stat"><span class="stat-n">4</span><span class="stat-l">Series</span></div>
+    <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Curiosity</span></div>
+  </div>
 </header>
 
 <!-- HOME CARDS -->
 <main>
-    <div class="home-grid">
+  <div class="home-cards">
 
-        <a href="pages/areas.html" class="home-card areas reveal">
-            <div class="hc-arrow">↗</div>
-            <div class="hc-icon">📐</div>
-            <h2>Areas</h2>
-            <p>Master area and surface-area formulas for 2D shapes and 3D solids. Visual diagrams, theory, and instant calculators.</p>
-            <div class="tag-row">
-                <span class="tag">Circle</span>
-                <span class="tag">Triangle</span>
-                <span class="tag">Sphere</span>
-                <span class="tag">Ellipse</span>
-            </div>
-        </a>
+    <a href="pages/areas.html" class="hcard c-areas reveal">
+      <div class="hcard-arr">↗</div>
+      <div class="hcard-ico">📐</div>
+      <h2>Areas</h2>
+      <p>Formulas and calculators for 2D shapes and 3D solids — with SVG diagrams and step-by-step results.</p>
+      <div class="tags">
+        <span class="tag">Circle</span>
+        <span class="tag">Triangle</span>
+        <span class="tag">Sphere</span>
+        <span class="tag">Ellipse</span>
+      </div>
+    </a>
 
-        <a href="pages/patterns.html" class="home-card patterns reveal reveal-delay-1">
-            <div class="hc-arrow">↗</div>
-            <div class="hc-icon">🔢</div>
-            <h2>Patterns</h2>
-            <p>Discover arithmetic, geometric, Fibonacci, and visual star patterns. Generate sequences and understand the rules.</p>
-            <div class="tag-row">
-                <span class="tag">AP</span>
-                <span class="tag">GP</span>
-                <span class="tag">Fibonacci</span>
-                <span class="tag">Triangular</span>
-            </div>
-        </a>
+    <a href="pages/patterns.html" class="hcard c-pat reveal d1">
+      <div class="hcard-arr">↗</div>
+      <div class="hcard-ico">🔢</div>
+      <h2>Patterns</h2>
+      <p>Generate arithmetic, geometric, Fibonacci and visual star patterns. Understand the rules that drive every sequence.</p>
+      <div class="tags">
+        <span class="tag">AP</span>
+        <span class="tag">GP</span>
+        <span class="tag">Fibonacci</span>
+        <span class="tag">Triangular</span>
+      </div>
+    </a>
 
-        <a href="pages/series.html" class="home-card series reveal reveal-delay-2">
-            <div class="hc-arrow">↗</div>
-            <div class="hc-icon">∑</div>
-            <h2>Series</h2>
-            <p>Calculate sums of arithmetic and geometric series. Explore convergence of infinite series and the harmonic series.</p>
-            <div class="tag-row">
-                <span class="tag">AP Sum</span>
-                <span class="tag">GP Sum</span>
-                <span class="tag">Infinite GP</span>
-                <span class="tag">Harmonic</span>
-            </div>
-        </a>
+    <a href="pages/series.html" class="hcard c-series reveal d2">
+      <div class="hcard-arr">↗</div>
+      <div class="hcard-ico">∑</div>
+      <h2>Series</h2>
+      <p>Calculate finite sums, explore convergence of infinite series and compute harmonic partial sums with full working shown.</p>
+      <div class="tags">
+        <span class="tag">AP Sum</span>
+        <span class="tag">GP Sum</span>
+        <span class="tag">Infinite GP</span>
+        <span class="tag">Harmonic</span>
+      </div>
+    </a>
 
-    </div>
+  </div>
 </main>
 
 <!-- FOOTER -->
 <footer>
-    <p>© 2026 Navjinder Singh</p>
-    <div class="footer-logo"><div class="lm">∑</div>Web Math</div>
+  <p>© 2026 Navjinder Singh</p>
+  <div class="f-brand"><div class="f-sq">∑</div>Web Math</div>
 </footer>
 
-<div class="toast" id="toast"><span class="ti">✓</span><span id="toast-msg">Copied!</span></div>
-<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="t-ico">✓</span><span id="tmsg">Done!</span></div>
+
+<!-- SCROLL TOP -->
+<button class="s2t" id="s2t" onclick="scrollTop()" aria-label="Back to top">↑</button>
 
 <script src="js/main.js"></script>
 </body>
